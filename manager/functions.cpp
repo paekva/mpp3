@@ -1,23 +1,26 @@
 #include "functions.h"
 #include "message.pb.h"
+#include "types.h"
 #include <cstdint>
 #include <cstdio>
 #include <unistd.h>
 
-void *fibbonachiThread(void * args){
+void *fibbonachiThread(void * _args){
     printf("Inside fibbonachiThread\n");
-    TMessage *message = (TMessage *)args;
+    ThreadArgs *args = (ThreadArgs *)_args;
+    args->results->push_front("done");
 }
 
-void *powThread(void * args){
+void *powThread(void * _args){
     printf("Inside powThread\n");
-    TMessage *message = (TMessage *)args;
-
+    ThreadArgs *args = (ThreadArgs *)_args;
+    args->results->push_front("done");
 }
 
-void *bubbleSortThread(void * args){
+void *bubbleSortThread(void * _args){
     printf("Inside bubbleSortThread\n");
-    TMessage *message = (TMessage *)args;
+    ThreadArgs *args = (ThreadArgs *)_args;
+    args->results->push_front("done");
 }
 
 int fibbonachi(int number){

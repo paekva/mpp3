@@ -56,15 +56,20 @@ void threadPerThreadHandler(std::list<TMessage> *messageQ, std::list<std::string
     getMessages(messageQ);
     TMessage tMessage = getNextMessage(messageQ);
 
+    ThreadArgs threadArgs = {
+            &tMessage,
+            results,
+            resultsMutex
+    };
     pthread_t taskHandlerId;
     int result;
 
     if(tMessage.type() == FIBONACCI)
-        result = pthread_create(&taskHandlerId, nullptr, fibbonachiThread, &tMessage);
+        result = pthread_create(&taskHandlerId, nullptr, fibbonachiThread, &threadArgs);
     else if(tMessage.type() == POW)
-        result = pthread_create(&taskHandlerId, nullptr, powThread, &tMessage);
+        result = pthread_create(&taskHandlerId, nullptr, powThread, &threadArgs);
     else if(tMessage.type() == BUBBLE_SORT_UINT64)
-        result = pthread_create(&taskHandlerId, nullptr, bubbleSortThread, &tMessage);
+        result = pthread_create(&taskHandlerId, nullptr, bubbleSortThread, &threadArgs);
     else if(tMessage.type() == STOP) {
         return;
     }

@@ -1,6 +1,8 @@
 #ifndef TASKMANAGER_TYPES_H
 #define TASKMANAGER_TYPES_H
 #include <cstdint>
+#include <list>
+#include "message.pb.h"
 
 typedef enum
 {
@@ -25,7 +27,9 @@ typedef struct
 } ReaderArgs;
 
 typedef struct {
-
-} WriterArgs;
+    TMessage * tMessage;
+    std::list<std::string> *results;
+    pthread_mutex_t resultsMutex;
+} ThreadArgs;
 
 #endif //TASKMANAGER_TYPES_H
