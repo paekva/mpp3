@@ -82,8 +82,9 @@ public class Main {
             fosMetrics = new FileOutputStream("metrics.txt");
             int messageCount = generator.getMessagesCount();
 
-            FileOutputStream fos = new FileOutputStream("../messages.bin");
+            FileOutputStream fos = new FileOutputStream("../message.bin", true);
             for (int i = 0; i < messageCount; i++) {
+                Thread.sleep(500);
                 getMessage().writeTo(fos);
             }
             fos.close();

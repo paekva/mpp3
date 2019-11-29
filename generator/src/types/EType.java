@@ -1,10 +1,10 @@
 package types;
 
 public enum EType {
-    FIBONACCI (1),
-    POW (2),
-    BUBBLE_SORT_UINT64 (3),
-    STOP (4);
+    FIBONACCI (0),
+    POW (1),
+    BUBBLE_SORT_UINT64 (2),
+    STOP (3);
 
     private final int index;
 

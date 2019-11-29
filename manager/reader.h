@@ -6,7 +6,8 @@
 #include "message.pb.h"
 
 void *reader(void* _args);
-std::list<TMessage> getMessages();
-void threadPerThreadHandler(std::list<std::string> *results, pthread_mutex_t resultsMutex);
+void getMessages(std::list<TMessage> *messageQ);
+TMessage getNextMessage(std::list<TMessage> *messageQ);
+void threadPerThreadHandler(std::list<TMessage> *messageQ, std::list<std::string> *results, pthread_mutex_t resultsMutex);
 
 #endif //MANAGER_READER_H
