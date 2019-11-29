@@ -30,28 +30,23 @@ void *doNothing(void* _args)  {
 
 }
 
-list<TProtoMessage> getMessages() {
-    list<TProtoMessage> receivedMessages = {};
-
-    std::ifstream in("../messages.bin", std::ios_base::binary);
-
-    TProtoMessages messages;
-    messages.ParseFromIstream(&in);
-    std::cout << "Hello, World!" <<  messages.item_size() << std::endl;
-
-    for (int i = 0; i < messages.item_size(); i++) {
-        const TProtoMessage &newMessage = messages.item(i);
-        receivedMessages.push_front(newMessage);
-
-        if (newMessage.type()) {
-            std::cout << " \n " << newMessage.type();
-        }
-    }
-    return receivedMessages;
+TMessage getMessage(std::istream *in) {
+    TMessage message;
+    message.ParseFromIstream(in);
+    std::cout << "Hello, World! " <<  message.type() << std::endl;
+    return message;
 }
 
 void threadPerThreadHandler(std::list<std::string> *results, pthread_mutex_t resultsMutex) {
-    cout << "Hey!";
+    std::ifstream in("../messages.bin", std::ios_base::binary);
+    while(true){
+        TMessage message = getMessage(&in);
+
+        if(message.type() < 0)
+            break;
+    }
+    in.close();
+
     /*
      * pthread_t* taskHandlerIds = (pthread_t *)malloc(sizeof taskHandlerIds * messageCount);
 

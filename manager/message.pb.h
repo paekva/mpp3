@@ -47,43 +47,39 @@ struct TableStruct_message_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[2]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[1]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
   static const ::PROTOBUF_NAMESPACE_ID::uint32 offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_message_2eproto;
-class TProtoMessage;
-class TProtoMessageDefaultTypeInternal;
-extern TProtoMessageDefaultTypeInternal _TProtoMessage_default_instance_;
-class TProtoMessages;
-class TProtoMessagesDefaultTypeInternal;
-extern TProtoMessagesDefaultTypeInternal _TProtoMessages_default_instance_;
+class TMessage;
+class TMessageDefaultTypeInternal;
+extern TMessageDefaultTypeInternal _TMessage_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
-template<> ::TProtoMessage* Arena::CreateMaybeMessage<::TProtoMessage>(Arena*);
-template<> ::TProtoMessages* Arena::CreateMaybeMessage<::TProtoMessages>(Arena*);
+template<> ::TMessage* Arena::CreateMaybeMessage<::TMessage>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 
 // ===================================================================
 
-class TProtoMessage :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:TProtoMessage) */ {
+class TMessage :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:TMessage) */ {
  public:
-  TProtoMessage();
-  virtual ~TProtoMessage();
+  TMessage();
+  virtual ~TMessage();
 
-  TProtoMessage(const TProtoMessage& from);
-  TProtoMessage(TProtoMessage&& from) noexcept
-    : TProtoMessage() {
+  TMessage(const TMessage& from);
+  TMessage(TMessage&& from) noexcept
+    : TMessage() {
     *this = ::std::move(from);
   }
 
-  inline TProtoMessage& operator=(const TProtoMessage& from) {
+  inline TMessage& operator=(const TMessage& from) {
     CopyFrom(from);
     return *this;
   }
-  inline TProtoMessage& operator=(TProtoMessage&& from) noexcept {
+  inline TMessage& operator=(TMessage&& from) noexcept {
     if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -101,37 +97,37 @@ class TProtoMessage :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return GetMetadataStatic().reflection;
   }
-  static const TProtoMessage& default_instance();
+  static const TMessage& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const TProtoMessage* internal_default_instance() {
-    return reinterpret_cast<const TProtoMessage*>(
-               &_TProtoMessage_default_instance_);
+  static inline const TMessage* internal_default_instance() {
+    return reinterpret_cast<const TMessage*>(
+               &_TMessage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(TProtoMessage& a, TProtoMessage& b) {
+  friend void swap(TMessage& a, TMessage& b) {
     a.Swap(&b);
   }
-  inline void Swap(TProtoMessage* other) {
+  inline void Swap(TMessage* other) {
     if (other == this) return;
     InternalSwap(other);
   }
 
   // implements Message ----------------------------------------------
 
-  inline TProtoMessage* New() const final {
-    return CreateMaybeMessage<TProtoMessage>(nullptr);
+  inline TMessage* New() const final {
+    return CreateMaybeMessage<TMessage>(nullptr);
   }
 
-  TProtoMessage* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<TProtoMessage>(arena);
+  TMessage* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TMessage>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const TProtoMessage& from);
-  void MergeFrom(const TProtoMessage& from);
+  void CopyFrom(const TMessage& from);
+  void MergeFrom(const TMessage& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -145,10 +141,10 @@ class TProtoMessage :
   inline void SharedCtor();
   inline void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(TProtoMessage* other);
+  void InternalSwap(TMessage* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "TProtoMessage";
+    return "TMessage";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -217,7 +213,7 @@ class TProtoMessage :
   void _internal_set_type(::PROTOBUF_NAMESPACE_ID::uint32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:TProtoMessage)
+  // @@protoc_insertion_point(class_scope:TMessage)
  private:
   class _Internal;
 
@@ -226,143 +222,6 @@ class TProtoMessage :
   mutable std::atomic<int> _data_cached_byte_size_;
   ::PROTOBUF_NAMESPACE_ID::int64 size_;
   ::PROTOBUF_NAMESPACE_ID::uint32 type_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_message_2eproto;
-};
-// -------------------------------------------------------------------
-
-class TProtoMessages :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:TProtoMessages) */ {
- public:
-  TProtoMessages();
-  virtual ~TProtoMessages();
-
-  TProtoMessages(const TProtoMessages& from);
-  TProtoMessages(TProtoMessages&& from) noexcept
-    : TProtoMessages() {
-    *this = ::std::move(from);
-  }
-
-  inline TProtoMessages& operator=(const TProtoMessages& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline TProtoMessages& operator=(TProtoMessages&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const TProtoMessages& default_instance();
-
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const TProtoMessages* internal_default_instance() {
-    return reinterpret_cast<const TProtoMessages*>(
-               &_TProtoMessages_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    1;
-
-  friend void swap(TProtoMessages& a, TProtoMessages& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(TProtoMessages* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline TProtoMessages* New() const final {
-    return CreateMaybeMessage<TProtoMessages>(nullptr);
-  }
-
-  TProtoMessages* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<TProtoMessages>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const TProtoMessages& from);
-  void MergeFrom(const TProtoMessages& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(TProtoMessages* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "TProtoMessages";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_message_2eproto);
-    return ::descriptor_table_message_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
-
-  public:
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kItemFieldNumber = 1,
-  };
-  // repeated .TProtoMessage item = 1;
-  int item_size() const;
-  private:
-  int _internal_item_size() const;
-  public:
-  void clear_item();
-  ::TProtoMessage* mutable_item(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::TProtoMessage >*
-      mutable_item();
-  private:
-  const ::TProtoMessage& _internal_item(int index) const;
-  ::TProtoMessage* _internal_add_item();
-  public:
-  const ::TProtoMessage& item(int index) const;
-  ::TProtoMessage* add_item();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::TProtoMessage >&
-      item() const;
-
-  // @@protoc_insertion_point(class_scope:TProtoMessages)
- private:
-  class _Internal;
-
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::TProtoMessage > item_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_message_2eproto;
 };
@@ -375,143 +234,98 @@ class TProtoMessages :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// TProtoMessage
+// TMessage
 
 // uint32 type = 1;
-inline void TProtoMessage::clear_type() {
+inline void TMessage::clear_type() {
   type_ = 0u;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint32 TProtoMessage::_internal_type() const {
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TMessage::_internal_type() const {
   return type_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint32 TProtoMessage::type() const {
-  // @@protoc_insertion_point(field_get:TProtoMessage.type)
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TMessage::type() const {
+  // @@protoc_insertion_point(field_get:TMessage.type)
   return _internal_type();
 }
-inline void TProtoMessage::_internal_set_type(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void TMessage::_internal_set_type(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   
   type_ = value;
 }
-inline void TProtoMessage::set_type(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void TMessage::set_type(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   _internal_set_type(value);
-  // @@protoc_insertion_point(field_set:TProtoMessage.type)
+  // @@protoc_insertion_point(field_set:TMessage.type)
 }
 
 // int64 size = 2;
-inline void TProtoMessage::clear_size() {
+inline void TMessage::clear_size() {
   size_ = PROTOBUF_LONGLONG(0);
 }
-inline ::PROTOBUF_NAMESPACE_ID::int64 TProtoMessage::_internal_size() const {
+inline ::PROTOBUF_NAMESPACE_ID::int64 TMessage::_internal_size() const {
   return size_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int64 TProtoMessage::size() const {
-  // @@protoc_insertion_point(field_get:TProtoMessage.size)
+inline ::PROTOBUF_NAMESPACE_ID::int64 TMessage::size() const {
+  // @@protoc_insertion_point(field_get:TMessage.size)
   return _internal_size();
 }
-inline void TProtoMessage::_internal_set_size(::PROTOBUF_NAMESPACE_ID::int64 value) {
+inline void TMessage::_internal_set_size(::PROTOBUF_NAMESPACE_ID::int64 value) {
   
   size_ = value;
 }
-inline void TProtoMessage::set_size(::PROTOBUF_NAMESPACE_ID::int64 value) {
+inline void TMessage::set_size(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_size(value);
-  // @@protoc_insertion_point(field_set:TProtoMessage.size)
+  // @@protoc_insertion_point(field_set:TMessage.size)
 }
 
 // repeated uint32 data = 3;
-inline int TProtoMessage::_internal_data_size() const {
+inline int TMessage::_internal_data_size() const {
   return data_.size();
 }
-inline int TProtoMessage::data_size() const {
+inline int TMessage::data_size() const {
   return _internal_data_size();
 }
-inline void TProtoMessage::clear_data() {
+inline void TMessage::clear_data() {
   data_.Clear();
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint32 TProtoMessage::_internal_data(int index) const {
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TMessage::_internal_data(int index) const {
   return data_.Get(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint32 TProtoMessage::data(int index) const {
-  // @@protoc_insertion_point(field_get:TProtoMessage.data)
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TMessage::data(int index) const {
+  // @@protoc_insertion_point(field_get:TMessage.data)
   return _internal_data(index);
 }
-inline void TProtoMessage::set_data(int index, ::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void TMessage::set_data(int index, ::PROTOBUF_NAMESPACE_ID::uint32 value) {
   data_.Set(index, value);
-  // @@protoc_insertion_point(field_set:TProtoMessage.data)
+  // @@protoc_insertion_point(field_set:TMessage.data)
 }
-inline void TProtoMessage::_internal_add_data(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void TMessage::_internal_add_data(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   data_.Add(value);
 }
-inline void TProtoMessage::add_data(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void TMessage::add_data(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   _internal_add_data(value);
-  // @@protoc_insertion_point(field_add:TProtoMessage.data)
+  // @@protoc_insertion_point(field_add:TMessage.data)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint32 >&
-TProtoMessage::_internal_data() const {
+TMessage::_internal_data() const {
   return data_;
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint32 >&
-TProtoMessage::data() const {
-  // @@protoc_insertion_point(field_list:TProtoMessage.data)
+TMessage::data() const {
+  // @@protoc_insertion_point(field_list:TMessage.data)
   return _internal_data();
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint32 >*
-TProtoMessage::_internal_mutable_data() {
+TMessage::_internal_mutable_data() {
   return &data_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint32 >*
-TProtoMessage::mutable_data() {
-  // @@protoc_insertion_point(field_mutable_list:TProtoMessage.data)
+TMessage::mutable_data() {
+  // @@protoc_insertion_point(field_mutable_list:TMessage.data)
   return _internal_mutable_data();
-}
-
-// -------------------------------------------------------------------
-
-// TProtoMessages
-
-// repeated .TProtoMessage item = 1;
-inline int TProtoMessages::_internal_item_size() const {
-  return item_.size();
-}
-inline int TProtoMessages::item_size() const {
-  return _internal_item_size();
-}
-inline void TProtoMessages::clear_item() {
-  item_.Clear();
-}
-inline ::TProtoMessage* TProtoMessages::mutable_item(int index) {
-  // @@protoc_insertion_point(field_mutable:TProtoMessages.item)
-  return item_.Mutable(index);
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::TProtoMessage >*
-TProtoMessages::mutable_item() {
-  // @@protoc_insertion_point(field_mutable_list:TProtoMessages.item)
-  return &item_;
-}
-inline const ::TProtoMessage& TProtoMessages::_internal_item(int index) const {
-  return item_.Get(index);
-}
-inline const ::TProtoMessage& TProtoMessages::item(int index) const {
-  // @@protoc_insertion_point(field_get:TProtoMessages.item)
-  return _internal_item(index);
-}
-inline ::TProtoMessage* TProtoMessages::_internal_add_item() {
-  return item_.Add();
-}
-inline ::TProtoMessage* TProtoMessages::add_item() {
-  // @@protoc_insertion_point(field_add:TProtoMessages.item)
-  return _internal_add_item();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::TProtoMessage >&
-TProtoMessages::item() const {
-  // @@protoc_insertion_point(field_list:TProtoMessages.item)
-  return item_;
 }
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 
 // @@protoc_insertion_point(namespace_scope)
 

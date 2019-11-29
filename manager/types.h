@@ -2,13 +2,6 @@
 #define TASKMANAGER_TYPES_H
 #include <cstdint>
 
-typedef struct
-{
-    uint64_t Size;
-    uint8_t *Data;
-    uint8_t Type;
-} TMessage;
-
 typedef enum
 {
     FIBONACCI,

@@ -2,3 +2,4 @@ generator/.idea/
 generator/generator.iml
 manager/cmake-build-debug/
 manager/.idea
+generator/out/

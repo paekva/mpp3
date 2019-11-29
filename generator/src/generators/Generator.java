@@ -49,7 +49,7 @@ public abstract class Generator {
     }
 
     public int getMessagesCount(){
-        return (int)getRandomValue(1, 10);
+        return (int)getRandomValue(1, 1);
     }
 
     public double[] getMessagesIntervals(int messagesCount){

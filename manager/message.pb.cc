@@ -14,93 +14,63 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-extern PROTOBUF_INTERNAL_EXPORT_message_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TProtoMessage_message_2eproto;
-class TProtoMessageDefaultTypeInternal {
+class TMessageDefaultTypeInternal {
  public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<TProtoMessage> _instance;
-} _TProtoMessage_default_instance_;
-class TProtoMessagesDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<TProtoMessages> _instance;
-} _TProtoMessages_default_instance_;
-static void InitDefaultsscc_info_TProtoMessage_message_2eproto() {
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<TMessage> _instance;
+} _TMessage_default_instance_;
+static void InitDefaultsscc_info_TMessage_message_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::_TProtoMessage_default_instance_;
-    new (ptr) ::TProtoMessage();
+    void* ptr = &::_TMessage_default_instance_;
+    new (ptr) ::TMessage();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::TProtoMessage::InitAsDefaultInstance();
+  ::TMessage::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TProtoMessage_message_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_TProtoMessage_message_2eproto}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TMessage_message_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_TMessage_message_2eproto}, {}};
 
-static void InitDefaultsscc_info_TProtoMessages_message_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_TProtoMessages_default_instance_;
-    new (ptr) ::TProtoMessages();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::TProtoMessages::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TProtoMessages_message_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_TProtoMessages_message_2eproto}, {
-      &scc_info_TProtoMessage_message_2eproto.base,}};
-
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_message_2eproto[2];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_message_2eproto[1];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_message_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_message_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_message_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::TProtoMessage, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::TMessage, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::TProtoMessage, type_),
-  PROTOBUF_FIELD_OFFSET(::TProtoMessage, size_),
-  PROTOBUF_FIELD_OFFSET(::TProtoMessage, data_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::TProtoMessages, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::TProtoMessages, item_),
+  PROTOBUF_FIELD_OFFSET(::TMessage, type_),
+  PROTOBUF_FIELD_OFFSET(::TMessage, size_),
+  PROTOBUF_FIELD_OFFSET(::TMessage, data_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::TProtoMessage)},
-  { 8, -1, sizeof(::TProtoMessages)},
+  { 0, -1, sizeof(::TMessage)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_TProtoMessage_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_TProtoMessages_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_TMessage_default_instance_),
 };
 
 const char descriptor_table_protodef_message_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\rmessage.proto\"9\n\rTProtoMessage\022\014\n\004type"
-  "\030\001 \001(\r\022\014\n\004size\030\002 \001(\003\022\014\n\004data\030\003 \003(\r\".\n\016TP"
-  "rotoMessages\022\034\n\004item\030\001 \003(\0132\016.TProtoMessa"
-  "geb\006proto3"
+  "\n\rmessage.proto\"4\n\010TMessage\022\014\n\004type\030\001 \001("
+  "\r\022\014\n\004size\030\002 \001(\003\022\014\n\004data\030\003 \003(\rB\017B\rTMessag"
+  "eProtob\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_message_2eproto_deps[1] = {
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_message_2eproto_sccs[2] = {
-  &scc_info_TProtoMessage_message_2eproto.base,
-  &scc_info_TProtoMessages_message_2eproto.base,
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_message_2eproto_sccs[1] = {
+  &scc_info_TMessage_message_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_message_2eproto_once;
 static bool descriptor_table_message_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_message_2eproto = {
-  &descriptor_table_message_2eproto_initialized, descriptor_table_protodef_message_2eproto, "message.proto", 130,
-  &descriptor_table_message_2eproto_once, descriptor_table_message_2eproto_sccs, descriptor_table_message_2eproto_deps, 2, 0,
+  &descriptor_table_message_2eproto_initialized, descriptor_table_protodef_message_2eproto, "message.proto", 94,
+  &descriptor_table_message_2eproto_once, descriptor_table_message_2eproto_sccs, descriptor_table_message_2eproto_deps, 1, 0,
   schemas, file_default_instances, TableStruct_message_2eproto::offsets,
-  file_level_metadata_message_2eproto, 2, file_level_enum_descriptors_message_2eproto, file_level_service_descriptors_message_2eproto,
+  file_level_metadata_message_2eproto, 1, file_level_enum_descriptors_message_2eproto, file_level_service_descriptors_message_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -108,18 +78,18 @@ static bool dynamic_init_dummy_message_2eproto = (  ::PROTOBUF_NAMESPACE_ID::int
 
 // ===================================================================
 
-void TProtoMessage::InitAsDefaultInstance() {
+void TMessage::InitAsDefaultInstance() {
 }
-class TProtoMessage::_Internal {
+class TMessage::_Internal {
  public:
 };
 
-TProtoMessage::TProtoMessage()
+TMessage::TMessage()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:TProtoMessage)
+  // @@protoc_insertion_point(constructor:TMessage)
 }
-TProtoMessage::TProtoMessage(const TProtoMessage& from)
+TMessage::TMessage(const TMessage& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr),
       data_(from.data_) {
@@ -127,34 +97,34 @@ TProtoMessage::TProtoMessage(const TProtoMessage& from)
   ::memcpy(&size_, &from.size_,
     static_cast<size_t>(reinterpret_cast<char*>(&type_) -
     reinterpret_cast<char*>(&size_)) + sizeof(type_));
-  // @@protoc_insertion_point(copy_constructor:TProtoMessage)
+  // @@protoc_insertion_point(copy_constructor:TMessage)
 }
 
-void TProtoMessage::SharedCtor() {
+void TMessage::SharedCtor() {
   ::memset(&size_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&type_) -
       reinterpret_cast<char*>(&size_)) + sizeof(type_));
 }
 
-TProtoMessage::~TProtoMessage() {
-  // @@protoc_insertion_point(destructor:TProtoMessage)
+TMessage::~TMessage() {
+  // @@protoc_insertion_point(destructor:TMessage)
   SharedDtor();
 }
 
-void TProtoMessage::SharedDtor() {
+void TMessage::SharedDtor() {
 }
 
-void TProtoMessage::SetCachedSize(int size) const {
+void TMessage::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const TProtoMessage& TProtoMessage::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_TProtoMessage_message_2eproto.base);
+const TMessage& TMessage::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_TMessage_message_2eproto.base);
   return *internal_default_instance();
 }
 
 
-void TProtoMessage::Clear() {
-// @@protoc_insertion_point(message_clear_start:TProtoMessage)
+void TMessage::Clear() {
+// @@protoc_insertion_point(message_clear_start:TMessage)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -166,7 +136,7 @@ void TProtoMessage::Clear() {
   _internal_metadata_.Clear();
 }
 
-const char* TProtoMessage::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* TMessage::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
@@ -217,9 +187,9 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* TProtoMessage::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* TMessage::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:TProtoMessage)
+  // @@protoc_insertion_point(serialize_to_array_start:TMessage)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -248,12 +218,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:TProtoMessage)
+  // @@protoc_insertion_point(serialize_to_array_end:TMessage)
   return target;
 }
 
-size_t TProtoMessage::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:TProtoMessage)
+size_t TMessage::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:TMessage)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -298,23 +268,23 @@ size_t TProtoMessage::ByteSizeLong() const {
   return total_size;
 }
 
-void TProtoMessage::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:TProtoMessage)
+void TMessage::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:TMessage)
   GOOGLE_DCHECK_NE(&from, this);
-  const TProtoMessage* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<TProtoMessage>(
+  const TMessage* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<TMessage>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TProtoMessage)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TMessage)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:TProtoMessage)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:TMessage)
     MergeFrom(*source);
   }
 }
 
-void TProtoMessage::MergeFrom(const TProtoMessage& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:TProtoMessage)
+void TMessage::MergeFrom(const TMessage& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:TMessage)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -329,25 +299,25 @@ void TProtoMessage::MergeFrom(const TProtoMessage& from) {
   }
 }
 
-void TProtoMessage::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:TProtoMessage)
+void TMessage::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:TMessage)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void TProtoMessage::CopyFrom(const TProtoMessage& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:TProtoMessage)
+void TMessage::CopyFrom(const TMessage& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:TMessage)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool TProtoMessage::IsInitialized() const {
+bool TMessage::IsInitialized() const {
   return true;
 }
 
-void TProtoMessage::InternalSwap(TProtoMessage* other) {
+void TMessage::InternalSwap(TMessage* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
   data_.InternalSwap(&other->data_);
@@ -355,209 +325,15 @@ void TProtoMessage::InternalSwap(TProtoMessage* other) {
   swap(type_, other->type_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata TProtoMessage::GetMetadata() const {
-  return GetMetadataStatic();
-}
-
-
-// ===================================================================
-
-void TProtoMessages::InitAsDefaultInstance() {
-}
-class TProtoMessages::_Internal {
- public:
-};
-
-TProtoMessages::TProtoMessages()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
-  SharedCtor();
-  // @@protoc_insertion_point(constructor:TProtoMessages)
-}
-TProtoMessages::TProtoMessages(const TProtoMessages& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
-      item_(from.item_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:TProtoMessages)
-}
-
-void TProtoMessages::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_TProtoMessages_message_2eproto.base);
-}
-
-TProtoMessages::~TProtoMessages() {
-  // @@protoc_insertion_point(destructor:TProtoMessages)
-  SharedDtor();
-}
-
-void TProtoMessages::SharedDtor() {
-}
-
-void TProtoMessages::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const TProtoMessages& TProtoMessages::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_TProtoMessages_message_2eproto.base);
-  return *internal_default_instance();
-}
-
-
-void TProtoMessages::Clear() {
-// @@protoc_insertion_point(message_clear_start:TProtoMessages)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  item_.Clear();
-  _internal_metadata_.Clear();
-}
-
-const char* TProtoMessages::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
-    switch (tag >> 3) {
-      // repeated .TProtoMessage item = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_item(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
-}
-
-::PROTOBUF_NAMESPACE_ID::uint8* TProtoMessages::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:TProtoMessages)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // repeated .TProtoMessage item = 1;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_item_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, this->_internal_item(i), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:TProtoMessages)
-  return target;
-}
-
-size_t TProtoMessages::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:TProtoMessages)
-  size_t total_size = 0;
-
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // repeated .TProtoMessage item = 1;
-  total_size += 1UL * this->_internal_item_size();
-  for (const auto& msg : this->item_) {
-    total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
-}
-
-void TProtoMessages::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:TProtoMessages)
-  GOOGLE_DCHECK_NE(&from, this);
-  const TProtoMessages* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<TProtoMessages>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TProtoMessages)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:TProtoMessages)
-    MergeFrom(*source);
-  }
-}
-
-void TProtoMessages::MergeFrom(const TProtoMessages& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:TProtoMessages)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  item_.MergeFrom(from.item_);
-}
-
-void TProtoMessages::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:TProtoMessages)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void TProtoMessages::CopyFrom(const TProtoMessages& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:TProtoMessages)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool TProtoMessages::IsInitialized() const {
-  return true;
-}
-
-void TProtoMessages::InternalSwap(TProtoMessages* other) {
-  using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  item_.InternalSwap(&other->item_);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata TProtoMessages::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata TMessage::GetMetadata() const {
   return GetMetadataStatic();
 }
 
 
 // @@protoc_insertion_point(namespace_scope)
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::TProtoMessage* Arena::CreateMaybeMessage< ::TProtoMessage >(Arena* arena) {
-  return Arena::CreateInternal< ::TProtoMessage >(arena);
-}
-template<> PROTOBUF_NOINLINE ::TProtoMessages* Arena::CreateMaybeMessage< ::TProtoMessages >(Arena* arena) {
-  return Arena::CreateInternal< ::TProtoMessages >(arena);
+template<> PROTOBUF_NOINLINE ::TMessage* Arena::CreateMaybeMessage< ::TMessage >(Arena* arena) {
+  return Arena::CreateInternal< ::TMessage >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

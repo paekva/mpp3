@@ -41,7 +41,7 @@ public class Main {
             EType messageType = generator.getMessageType();
             MessageCreator messageCreator = new MessageCreator();
 
-            System.out.println(messageType);
+            System.out.println(messageType + "  " + messageType.index());
             switch (messageType){
                 case FIBONACCI:
                     return messageCreator.getMessage(messageType, generator.getFibbonachiNumber());
@@ -82,7 +82,7 @@ public class Main {
             fosMetrics = new FileOutputStream("metrics.txt");
             int messageCount = generator.getMessagesCount();
 
-            FileOutputStream fos = new FileOutputStream("messages.bin");
+            FileOutputStream fos = new FileOutputStream("../messages.bin");
             for (int i = 0; i < messageCount; i++) {
                 getMessage().writeTo(fos);
             }
@@ -94,19 +94,6 @@ public class Main {
                 Thread.sleep((long)intervals[i]);
             }
             */
-
-
-            /* TODO: tmp reading from protobuf just to check
-            System.out.println("----------");
-
-            FileInputStream is = new FileInputStream("messages.bin");
-            TMessagesProto.TMessages readedMessages = TMessagesProto.TMessages.parseFrom(is);
-            List<TMessagesProto.TMessage> messages = readedMessages.getItemList();
-            int j = 0;
-            for(j=0; j<messages.size(); j++){
-                System.out.println(messages.get(j).getType());
-            }
-             */
 
         } catch (Exception e){
             System.out.println(e.getMessage());
