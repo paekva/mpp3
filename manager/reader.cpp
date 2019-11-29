@@ -11,11 +11,12 @@ using namespace std;
 
 void *reader(void* _args) {
     auto* args = (ReaderArgs *) _args;
-    list<TMessage> messageQ = {};
+    list<TMessage> *messageQ = {};
+    getMessages(messageQ);
 
 
     if (args->params->strategy == PER_THREAD)
-        threadPerThreadHandler(&messageQ, args->resultArgs);
+        threadPerThreadHandler(messageQ, args->resultArgs);
     else if (args->params->strategy == PER_TASK)
         std::cout << "PER_TASK";
         // threadPerTaskHandler(messages, messagesCount);
@@ -37,20 +38,20 @@ TMessage getNextMessage(list<TMessage> *messageQ){
 }
 
 void getMessages(list<TMessage> *messageQ) {
-    std::ifstream in("../../message.bin", std::ios_base::binary);
-
+    std::ifstream in("../../hub", std::ios_base::binary);
     TMessage message;
-    message.ParseFromIstream(&in);
 
-    std::cout << "Hello, World! " <<  message.type() << std::endl;
-    messageQ->push_front(message);
+    do{
+        message.ParseFromIstream(&in);
+        std::cout << "Hello, World! " <<  message.type() << std::endl;
+        messageQ->push_front(message);
+    } while(message.type() != 3);
 
     in.close();
 }
 
 void threadPerThreadHandler(std::list<TMessage> *messageQ, ResultArgs *resultArgs) {
     // TODO: temporary not all messages are written
-    getMessages(messageQ);
     TMessage tMessage = getNextMessage(messageQ);
 
     ThreadArgs threadArgs = {
@@ -67,6 +68,9 @@ void threadPerThreadHandler(std::list<TMessage> *messageQ, ResultArgs *resultArg
     else if(tMessage.type() == BUBBLE_SORT_UINT64)
         result = pthread_create(&taskHandlerId, nullptr, bubbleSortThread, &threadArgs);
     else if(tMessage.type() == STOP) {
+        while(pthread_cancel(resultArgs->writerThread) != 0){
+
+        }
         return;
     }
 

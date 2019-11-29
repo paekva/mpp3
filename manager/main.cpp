@@ -3,13 +3,15 @@
 #include "writer.h"
 
 int main(int argc, char* argv[]) {
+    pthread_t readerID, reporterID, writerID;
     std::list<std::string> results = {};
     pthread_mutex_t resultsMutex;
     pthread_mutex_init(&resultsMutex, nullptr);
 
     ResultArgs resultArgs = {
             &results,
-            resultsMutex
+            &resultsMutex,
+            writerID
     };
     Params params = getOptions(argc, argv);
 
@@ -18,7 +20,6 @@ int main(int argc, char* argv[]) {
             &resultArgs,
     };
 
-    pthread_t readerID, reporterID, writerID;
 
     int readerResult = pthread_create(&readerID, nullptr, reader, &readerArgs);
     if(readerResult != 0){

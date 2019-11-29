@@ -21,7 +21,8 @@ typedef enum
 
 typedef struct {
     std::list<std::string> *results;
-    pthread_mutex_t resultsMutex;
+    pthread_mutex_t *resultsMutex;
+    pthread_t writerThread;
 } ResultArgs;
 
 typedef struct {

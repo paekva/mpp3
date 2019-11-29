@@ -1,26 +1,32 @@
-#include "functions.h"
 #include "message.pb.h"
 #include "types.h"
 #include <cstdint>
 #include <cstdio>
-#include <unistd.h>
+#include <pthread.h>
+
+void addResult(ResultArgs *resultArgs, std::string message){
+    std::cout << message << std::endl;
+    pthread_mutex_lock(resultArgs->resultsMutex);
+    resultArgs->results->push_front(message);
+    pthread_mutex_unlock(resultArgs->resultsMutex);
+}
 
 void *fibbonachiThread(void * _args){
     printf("Inside fibbonachiThread\n");
-    ThreadArgs *args = (ThreadArgs *)_args;
-    args->resultArgs->results->push_front("done");
+    auto *args = (ThreadArgs *)_args;
+    addResult(args->resultArgs, "fibb done");
 }
 
 void *powThread(void * _args){
     printf("Inside powThread\n");
-    ThreadArgs *args = (ThreadArgs *)_args;
-    args->resultArgs->results->push_front("done");
+    auto *args = (ThreadArgs *)_args;
+    addResult(args->resultArgs, "pow done");
 }
 
 void *bubbleSortThread(void * _args){
     printf("Inside bubbleSortThread\n");
-    ThreadArgs *args = (ThreadArgs *)_args;
-    args->resultArgs->results->push_front("done");
+    auto *args = (ThreadArgs *)_args;
+    addResult(args->resultArgs, "sort done");
 }
 
 int fibbonachi(int number){
