@@ -8,6 +8,6 @@
 void *reader(void* _args);
 void getMessages(std::list<TMessage> *messageQ);
 TMessage getNextMessage(std::list<TMessage> *messageQ);
-void threadPerThreadHandler(std::list<TMessage> *messageQ, std::list<std::string> *results, pthread_mutex_t resultsMutex);
+void threadPerThreadHandler(std::list<TMessage> *messageQ, ResultArgs *resultArgs);
 
 #endif //MANAGER_READER_H

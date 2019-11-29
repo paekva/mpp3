@@ -13,13 +13,10 @@ void *reader(void* _args) {
     auto* args = (ReaderArgs *) _args;
     list<TMessage> messageQ = {};
 
-    list<string> results = {};
-    pthread_mutex_t resultsMutex;
-    pthread_mutex_init(&resultsMutex, nullptr);
 
-    if (args->strategy == PER_THREAD)
-        threadPerThreadHandler(&messageQ, &results, resultsMutex);
-    else if (args->strategy == PER_TASK)
+    if (args->params->strategy == PER_THREAD)
+        threadPerThreadHandler(&messageQ, args->resultArgs);
+    else if (args->params->strategy == PER_TASK)
         std::cout << "PER_TASK";
         // threadPerTaskHandler(messages, messagesCount);
     else {
@@ -51,18 +48,17 @@ void getMessages(list<TMessage> *messageQ) {
     in.close();
 }
 
-void threadPerThreadHandler(std::list<TMessage> *messageQ, std::list<std::string> *results, pthread_mutex_t resultsMutex) {
+void threadPerThreadHandler(std::list<TMessage> *messageQ, ResultArgs *resultArgs) {
     // TODO: temporary not all messages are written
     getMessages(messageQ);
     TMessage tMessage = getNextMessage(messageQ);
 
     ThreadArgs threadArgs = {
             &tMessage,
-            results,
-            resultsMutex
+            resultArgs
     };
     pthread_t taskHandlerId;
-    int result;
+    int result = 0;
 
     if(tMessage.type() == FIBONACCI)
         result = pthread_create(&taskHandlerId, nullptr, fibbonachiThread, &threadArgs);

@@ -19,17 +19,27 @@ typedef enum
     THREAD_POOL
 } Strategy;
 
-typedef struct
-{
+typedef struct {
+    std::list<std::string> *results;
+    pthread_mutex_t resultsMutex;
+} ResultArgs;
+
+typedef struct {
     Strategy strategy;
     uint8_t threadsCount;
     uint16_t msInterval;
+} Params;
+
+typedef struct
+{
+    Params * params;
+    ResultArgs * resultArgs;
 } ReaderArgs;
 
 typedef struct {
     TMessage * tMessage;
-    std::list<std::string> *results;
-    pthread_mutex_t resultsMutex;
+    ResultArgs * resultArgs;
 } ThreadArgs;
+
 
 #endif //TASKMANAGER_TYPES_H

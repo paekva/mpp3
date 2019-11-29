@@ -8,19 +8,19 @@
 void *fibbonachiThread(void * _args){
     printf("Inside fibbonachiThread\n");
     ThreadArgs *args = (ThreadArgs *)_args;
-    args->results->push_front("done");
+    args->resultArgs->results->push_front("done");
 }
 
 void *powThread(void * _args){
     printf("Inside powThread\n");
     ThreadArgs *args = (ThreadArgs *)_args;
-    args->results->push_front("done");
+    args->resultArgs->results->push_front("done");
 }
 
 void *bubbleSortThread(void * _args){
     printf("Inside bubbleSortThread\n");
     ThreadArgs *args = (ThreadArgs *)_args;
-    args->results->push_front("done");
+    args->resultArgs->results->push_front("done");
 }
 
 int fibbonachi(int number){

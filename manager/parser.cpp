@@ -3,7 +3,7 @@
 #include <cstring>
 #include "types.h"
 
-ReaderArgs getOptions(int argc, char* argv[]){
+Params getOptions(int argc, char* argv[]){
     Strategy strategy = PER_THREAD;
     uint8_t threadsCount = 0;
     uint16_t msInterval = 800;
@@ -41,7 +41,7 @@ ReaderArgs getOptions(int argc, char* argv[]){
         } else break;
     }
 
-    ReaderArgs args = {
+    Params args = {
             strategy,
             threadsCount,
             msInterval
