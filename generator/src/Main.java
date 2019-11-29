@@ -1,7 +1,5 @@
-import ifmo.mpp.lab3.generators.Exponential;
-import ifmo.mpp.lab3.generators.Generator;
-import ifmo.mpp.lab3.generators.Normal;
-import ifmo.mpp.lab3.generators.Uniform;
+import generators.*;
+import types.EType;
 
 import java.io.FileOutputStream;
 
@@ -38,7 +36,7 @@ public class Main {
         }
     }
 
-    private static TMessagesProto.TMessage getMessage() throws Exception {
+    private static TMessageProto.TMessage getMessage() throws Exception {
         if(generator != null ){
             EType messageType = generator.getMessageType();
             MessageCreator messageCreator = new MessageCreator();
@@ -81,17 +79,13 @@ public class Main {
             parseOptions(args);
             initGenerator();
 
-            FileOutputStream fos = new FileOutputStream("messages.bin");
             fosMetrics = new FileOutputStream("metrics.txt");
             int messageCount = generator.getMessagesCount();
 
-
-            TMessagesProto.TMessages.Builder allMessages = TMessagesProto.TMessages.newBuilder();
+            FileOutputStream fos = new FileOutputStream("messages.bin");
             for (int i = 0; i < messageCount; i++) {
-                TMessagesProto.TMessage newMessage = getMessage();
-                allMessages.addItem(newMessage);
+                getMessage().writeTo(fos);
             }
-            allMessages.build().writeTo(fos);
             fos.close();
 
             /*

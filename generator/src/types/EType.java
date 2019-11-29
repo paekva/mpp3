@@ -1,3 +1,5 @@
+package types;
+
 public enum EType {
     FIBONACCI (1),
     POW (2),

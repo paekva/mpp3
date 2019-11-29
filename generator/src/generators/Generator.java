@@ -1,6 +1,6 @@
 package generators;
 
-import ifmo.mpp.lab3.EType;
+import types.EType;
 
 public abstract class Generator {
     abstract double getRandomValue(double a, double b);

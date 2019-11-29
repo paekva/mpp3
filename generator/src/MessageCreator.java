@@ -1,15 +1,17 @@
+import types.EType;
+
 public class MessageCreator {
 
-    TMessagesProto.TMessage getMessage(EType messageType, int fibbonachi){
-        return TMessagesProto.TMessage.newBuilder()
+    TMessageProto.TMessage getMessage(EType messageType, int fibbonachi){
+        return TMessageProto.TMessage.newBuilder()
                 .setType(messageType.index())
                 .setSize(1)
                 .addData(fibbonachi)
                 .build();
     }
 
-    TMessagesProto.TMessage getMessage(EType messageType, int powBase, int powValue){
-        return TMessagesProto.TMessage.newBuilder()
+    TMessageProto.TMessage getMessage(EType messageType, int powBase, int powValue){
+        return TMessageProto.TMessage.newBuilder()
                 .setType(messageType.index())
                 .setSize(2)
                 .addData(powBase)
@@ -17,8 +19,8 @@ public class MessageCreator {
                 .build();
     }
 
-    TMessagesProto.TMessage getMessage(EType messageType, int size, double[] array){
-        TMessagesProto.TMessage.Builder builder= TMessagesProto.TMessage.newBuilder()
+    TMessageProto.TMessage getMessage(EType messageType, int size, double[] array){
+        TMessageProto.TMessage.Builder builder= TMessageProto.TMessage.newBuilder()
                 .setType(messageType.index())
                 .setSize(1 + size)
                 .addData(size);
@@ -30,8 +32,8 @@ public class MessageCreator {
         return builder.build();
     }
 
-    TMessagesProto.TMessage getMessage(EType messageType){
-        return TMessagesProto.TMessage.newBuilder()
+    TMessageProto.TMessage getMessage(EType messageType){
+        return TMessageProto.TMessage.newBuilder()
                 .setType(messageType.index())
                 .setSize(0)
                 .build();
