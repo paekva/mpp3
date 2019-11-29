@@ -11,7 +11,9 @@ ADD_LIBRARY(proto3 ${PROTO_HEADER} ${PROTO_SRC})
 TARGET_LINK_LIBRARIES(proto3)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 
+find_library(PTHREAD_LIBRARY pthread)
 
-add_executable(manager main.cpp reader.cpp reader.h types.h)
+add_executable(manager main.cpp reader.cpp reader.h types.h parser.cpp parser.h)
 
 TARGET_LINK_LIBRARIES(manager proto3 ${PROTOBUF_LIBRARY})
+target_link_libraries(manager ${PTHREAD_LIBRARY})
