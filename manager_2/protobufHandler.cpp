@@ -7,26 +7,25 @@ extern "C" void getMessages(Queue * messages);
 extern "C" void addToQueueWrapper(Queue * messages, TMessage *m1);
 
 void getMessages(Queue * messages) {
-    //std::istream *ins = &std::cin;
+    std::istream *ins = &std::cin;
 
+    uint8_t i = 0;
     while(true){
-        // ins->readsome(message, 10);
-
-        TMessage m1 = {
-                1,
-                1,
-                (uint8_t *)1
-        };
-        addToQueueWrapper(messages, &m1);
-        addToQueueWrapper(messages, &m1);
-        addToQueueWrapper(messages, &m1);
-
-        break;
-        // TMessage message;
+        // TMessageProto message;
         // message.ParseFromIstream(ins);
         // std::cout << message.type() << std::endl;
-        // if(message.type() == 3)
-        //    break;
+
+        auto *m1 = (TMessage *)malloc(sizeof(TMessage));
+        m1->Type = i;
+        m1->Size = 1;
+        m1->Data = (uint8_t *)1;
+
+        addToQueueWrapper(messages, m1);
+
+        i++;
+
+        if(i==4)
+            break;
     };
 
 }

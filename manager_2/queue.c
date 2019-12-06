@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void addToQueue(Queue* q, TMessage* newValue){
+void addToQueue(Queue* q, void* newValue){
     if(q == NULL) {
         return;
     }
@@ -24,12 +24,12 @@ void addToQueue(Queue* q, TMessage* newValue){
     pthread_mutex_unlock(&q->mutexId);
 }
 
-void addToQueueWrapper(Queue* q, TMessage* newValue){
+void addToQueueWrapper(Queue* q, void* newValue){
     addToQueue(q, newValue);
 }
 
-TMessage removeFromQueue(Queue* q){
-    TMessage returnValue = {};
+void* removeFromQueue(Queue* q){
+    void* returnValue = NULL;
     if(q == NULL){
         return returnValue;
     }
@@ -45,7 +45,7 @@ TMessage removeFromQueue(Queue* q){
             q->tail = NULL;
         }
 
-        returnValue = *(removedNode->value);
+        returnValue = &(*(removedNode->value));
         free(removedNode);
     }
     pthread_mutex_unlock(&q->mutexId);
