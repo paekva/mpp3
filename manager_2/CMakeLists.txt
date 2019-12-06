@@ -3,4 +3,4 @@ project(manager_2)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(manager_2 main.c protobufHandler.cpp protobufHandler.h)
+add_executable(manager_2 main.c types.h protobufHandler.cpp protobufHandler.h queue.c queue.h)
