@@ -14,23 +14,23 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-class TMessageDefaultTypeInternal {
+class TMessageProtoDefaultTypeInternal {
  public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<TMessage> _instance;
-} _TMessage_default_instance_;
-static void InitDefaultsscc_info_TMessage_message_2eproto() {
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<TMessageProto> _instance;
+} _TMessageProto_default_instance_;
+static void InitDefaultsscc_info_TMessageProto_message_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::_TMessage_default_instance_;
-    new (ptr) ::TMessage();
+    void* ptr = &::_TMessageProto_default_instance_;
+    new (ptr) ::TMessageProto();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::TMessage::InitAsDefaultInstance();
+  ::TMessageProto::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TMessage_message_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_TMessage_message_2eproto}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TMessageProto_message_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_TMessageProto_message_2eproto}, {}};
 
 static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_message_2eproto[1];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_message_2eproto = nullptr;
@@ -38,36 +38,36 @@ static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_s
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_message_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::TMessage, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::TMessageProto, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::TMessage, type_),
-  PROTOBUF_FIELD_OFFSET(::TMessage, size_),
-  PROTOBUF_FIELD_OFFSET(::TMessage, data_),
+  PROTOBUF_FIELD_OFFSET(::TMessageProto, type_),
+  PROTOBUF_FIELD_OFFSET(::TMessageProto, size_),
+  PROTOBUF_FIELD_OFFSET(::TMessageProto, data_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::TMessage)},
+  { 0, -1, sizeof(::TMessageProto)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_TMessage_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_TMessageProto_default_instance_),
 };
 
 const char descriptor_table_protodef_message_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\rmessage.proto\"4\n\010TMessage\022\014\n\004type\030\001 \001("
-  "\r\022\014\n\004size\030\002 \001(\003\022\014\n\004data\030\003 \003(\rB\017B\rTMessag"
-  "eProtob\006proto3"
+  "\n\rmessage.proto\"9\n\rTMessageProto\022\014\n\004type"
+  "\030\001 \001(\r\022\014\n\004size\030\002 \001(\003\022\014\n\004data\030\003 \003(\rB\017B\rTM"
+  "essageProtob\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_message_2eproto_deps[1] = {
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_message_2eproto_sccs[1] = {
-  &scc_info_TMessage_message_2eproto.base,
+  &scc_info_TMessageProto_message_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_message_2eproto_once;
 static bool descriptor_table_message_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_message_2eproto = {
-  &descriptor_table_message_2eproto_initialized, descriptor_table_protodef_message_2eproto, "message.proto", 94,
+  &descriptor_table_message_2eproto_initialized, descriptor_table_protodef_message_2eproto, "message.proto", 99,
   &descriptor_table_message_2eproto_once, descriptor_table_message_2eproto_sccs, descriptor_table_message_2eproto_deps, 1, 0,
   schemas, file_default_instances, TableStruct_message_2eproto::offsets,
   file_level_metadata_message_2eproto, 1, file_level_enum_descriptors_message_2eproto, file_level_service_descriptors_message_2eproto,
@@ -78,18 +78,18 @@ static bool dynamic_init_dummy_message_2eproto = (  ::PROTOBUF_NAMESPACE_ID::int
 
 // ===================================================================
 
-void TMessage::InitAsDefaultInstance() {
+void TMessageProto::InitAsDefaultInstance() {
 }
-class TMessage::_Internal {
+class TMessageProto::_Internal {
  public:
 };
 
-TMessage::TMessage()
+TMessageProto::TMessageProto()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:TMessage)
+  // @@protoc_insertion_point(constructor:TMessageProto)
 }
-TMessage::TMessage(const TMessage& from)
+TMessageProto::TMessageProto(const TMessageProto& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr),
       data_(from.data_) {
@@ -97,34 +97,34 @@ TMessage::TMessage(const TMessage& from)
   ::memcpy(&size_, &from.size_,
     static_cast<size_t>(reinterpret_cast<char*>(&type_) -
     reinterpret_cast<char*>(&size_)) + sizeof(type_));
-  // @@protoc_insertion_point(copy_constructor:TMessage)
+  // @@protoc_insertion_point(copy_constructor:TMessageProto)
 }
 
-void TMessage::SharedCtor() {
+void TMessageProto::SharedCtor() {
   ::memset(&size_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&type_) -
       reinterpret_cast<char*>(&size_)) + sizeof(type_));
 }
 
-TMessage::~TMessage() {
-  // @@protoc_insertion_point(destructor:TMessage)
+TMessageProto::~TMessageProto() {
+  // @@protoc_insertion_point(destructor:TMessageProto)
   SharedDtor();
 }
 
-void TMessage::SharedDtor() {
+void TMessageProto::SharedDtor() {
 }
 
-void TMessage::SetCachedSize(int size) const {
+void TMessageProto::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const TMessage& TMessage::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_TMessage_message_2eproto.base);
+const TMessageProto& TMessageProto::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_TMessageProto_message_2eproto.base);
   return *internal_default_instance();
 }
 
 
-void TMessage::Clear() {
-// @@protoc_insertion_point(message_clear_start:TMessage)
+void TMessageProto::Clear() {
+// @@protoc_insertion_point(message_clear_start:TMessageProto)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -136,7 +136,7 @@ void TMessage::Clear() {
   _internal_metadata_.Clear();
 }
 
-const char* TMessage::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* TMessageProto::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
@@ -187,9 +187,9 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* TMessage::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* TMessageProto::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:TMessage)
+  // @@protoc_insertion_point(serialize_to_array_start:TMessageProto)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -218,12 +218,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:TMessage)
+  // @@protoc_insertion_point(serialize_to_array_end:TMessageProto)
   return target;
 }
 
-size_t TMessage::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:TMessage)
+size_t TMessageProto::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:TMessageProto)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -268,23 +268,23 @@ size_t TMessage::ByteSizeLong() const {
   return total_size;
 }
 
-void TMessage::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:TMessage)
+void TMessageProto::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:TMessageProto)
   GOOGLE_DCHECK_NE(&from, this);
-  const TMessage* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<TMessage>(
+  const TMessageProto* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<TMessageProto>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TMessage)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TMessageProto)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:TMessage)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:TMessageProto)
     MergeFrom(*source);
   }
 }
 
-void TMessage::MergeFrom(const TMessage& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:TMessage)
+void TMessageProto::MergeFrom(const TMessageProto& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:TMessageProto)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -299,25 +299,25 @@ void TMessage::MergeFrom(const TMessage& from) {
   }
 }
 
-void TMessage::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:TMessage)
+void TMessageProto::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:TMessageProto)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void TMessage::CopyFrom(const TMessage& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:TMessage)
+void TMessageProto::CopyFrom(const TMessageProto& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:TMessageProto)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool TMessage::IsInitialized() const {
+bool TMessageProto::IsInitialized() const {
   return true;
 }
 
-void TMessage::InternalSwap(TMessage* other) {
+void TMessageProto::InternalSwap(TMessageProto* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
   data_.InternalSwap(&other->data_);
@@ -325,15 +325,15 @@ void TMessage::InternalSwap(TMessage* other) {
   swap(type_, other->type_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata TMessage::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata TMessageProto::GetMetadata() const {
   return GetMetadataStatic();
 }
 
 
 // @@protoc_insertion_point(namespace_scope)
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::TMessage* Arena::CreateMaybeMessage< ::TMessage >(Arena* arena) {
-  return Arena::CreateInternal< ::TMessage >(arena);
+template<> PROTOBUF_NOINLINE ::TMessageProto* Arena::CreateMaybeMessage< ::TMessageProto >(Arena* arena) {
+  return Arena::CreateInternal< ::TMessageProto >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

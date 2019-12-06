@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option java_outer_classname = "TMessageProto";
 
-message TMessage {
+message TMessageProto {
   uint32 type = 1;
   int64 size = 2;
   repeated uint32 data = 3;

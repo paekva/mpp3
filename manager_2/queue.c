@@ -24,6 +24,10 @@ void addToQueue(Queue* q, TMessage* newValue){
     pthread_mutex_unlock(&q->mutexId);
 }
 
+void addToQueueWrapper(Queue* q, TMessage* newValue){
+    addToQueue(q, newValue);
+}
+
 TMessage removeFromQueue(Queue* q){
     TMessage returnValue = {};
     if(q == NULL){
