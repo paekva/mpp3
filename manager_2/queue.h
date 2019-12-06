@@ -1,5 +1,5 @@
 #pragma once
-
+#include <pthread.h>
 #include "types.h"
 
 typedef struct QueueNode
@@ -11,6 +11,7 @@ typedef struct QueueNode
 typedef struct {
     QueueNode* head;
     QueueNode* tail;
+    pthread_mutex_t mutexId;
 } Queue;
 
 TMessage removeFromQueue(Queue* q);
