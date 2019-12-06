@@ -5,7 +5,6 @@
 #include <pthread.h>
 
 void addResult(ResultArgs *resultArgs, std::string message){
-    std::cout << message << std::endl;
     pthread_mutex_lock(resultArgs->resultsMutex);
     resultArgs->results->push_front(message);
     pthread_mutex_unlock(resultArgs->resultsMutex);

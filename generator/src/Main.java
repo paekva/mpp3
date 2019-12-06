@@ -82,15 +82,13 @@ public class Main {
             fosMetrics = new FileOutputStream("metrics.txt");
             int messageCount = generator.getMessagesCount();
 
-            FileOutputStream fos = new FileOutputStream("../hub", true);
+            FileOutputStream fos = new FileOutputStream("../hub", false);
             for (int i = 0; i < messageCount; i++) {
-                Thread.sleep(500);
                 getMessage().writeTo(fos);
             }
-
-            // TODO: remove tmp
-            MessageCreator mc = new MessageCreator();
-            mc.getMessage(EType.STOP).writeTo(fos);
+            MessageCreator messageCreator = new MessageCreator();
+            messageCreator.getMessage(EType.STOP).writeTo(fos);
+            
             fos.close();
 
             /*

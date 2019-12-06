@@ -17,6 +17,4 @@ void *writer(void* _args) {
             pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, nullptr);
         }
     }
-
-    return nullptr;
 }
