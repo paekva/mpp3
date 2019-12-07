@@ -21,6 +21,7 @@ int main(int argc, char* argv[]) {
     if (params.strategy == PER_THREAD)
         threadPerThreadHandler(messages, results);
     else if (params.strategy == PER_TASK) {
+        threadPerTaskHandler(messages, results);
         printf("PER_TASK\n");
     }
     else {

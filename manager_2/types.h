@@ -46,3 +46,9 @@ typedef struct {
     TMessage * tMessage;
     Queue * results;
 } ThreadArgs;
+
+typedef struct {
+    Queue * messages;
+    Queue * results;
+    void *(*handler)(void *args);
+} TaskArgs;
