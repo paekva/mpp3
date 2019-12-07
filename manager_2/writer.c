@@ -7,11 +7,11 @@ void *writer(void* _args) {
     while(1){
         if(getQueueSize(resultList) != 0){
             char *message = removeFromQueue(resultList);
-            printf("\nresult %s\n\n", message);
+            printf("\nresult %s\n", message);
             i++;
         }
 
-        if(i>2)
+        if(i>30)
             break;
     }
 }

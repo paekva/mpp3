@@ -20,13 +20,10 @@ int main(int argc, char* argv[]) {
 
     if (params.strategy == PER_THREAD)
         threadPerThreadHandler(messages, results);
-    else if (params.strategy == PER_TASK) {
+    else if (params.strategy == PER_TASK)
         threadPerTaskHandler(messages, results);
-        printf("PER_TASK\n");
-    }
-    else {
-        printf("THREAD_POOL\n");
-    }
+    else
+        threadPoolHandler(4, messages, results);
 
     pthread_join(readerID, NULL);
     pthread_join(writerID, NULL);

@@ -16,7 +16,7 @@ void getMessages(Queue * messages) {
         // std::cout << message.type() << std::endl;
 
         auto *m1 = (TMessage *)malloc(sizeof(TMessage));
-        m1->Type = i;
+        m1->Type = i%3;
         m1->Size = 1;
         m1->Data = (uint8_t *)1;
 
@@ -24,8 +24,14 @@ void getMessages(Queue * messages) {
 
         i++;
 
-        if(i==4)
+        if(i > 30){
+            auto *m1 = (TMessage *)malloc(sizeof(TMessage));
+            m1->Type = 3;
+            m1->Size = 1;
+            m1->Data = (uint8_t *)1;
+            addToQueueWrapper(messages, m1);
             break;
+        }
     };
 
 }

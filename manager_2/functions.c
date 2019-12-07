@@ -1,22 +1,26 @@
 #include "stdio.h"
 #include "types.h"
 #include "queue.h"
+#include <unistd.h>
 
 void *fibbonachiThread(void * _args){
     printf("Inside fibbonachiThread\n");
     ThreadArgs *args = (ThreadArgs *)_args;
+    sleep(2);
     addToQueue(args->results, "fibb done");
 }
 
 void *powThread(void * _args){
     printf("Inside powThread\n");
     ThreadArgs *args = (ThreadArgs *)_args;
+    sleep(1);
     addToQueue(args->results, "pow done");
 }
 
 void *bubbleSortThread(void * _args){
     printf("Inside bubbleSortThread\n");
     ThreadArgs *args = (ThreadArgs *)_args;
+    sleep(3);
     addToQueue(args->results, "sort done");
 }
 

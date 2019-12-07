@@ -13,8 +13,6 @@ void threadPerThreadHandler(Queue *messages, Queue *results) {
             threadArgs->results = results;
             threadArgs->tMessage = tMessage;
 
-            printf("next message %d \n", tMessage->Type);
-
             int result;
             pthread_t taskHandlerId;
 
@@ -38,7 +36,7 @@ void threadPerTaskHandler(Queue *messages, Queue *results) {
     Queue *powQueue = createQueue();
     Queue *sortQueue = createQueue();
 
-    TaskArgs *fibbArgs = (TaskArgs *)malloc(sizeof(ThreadArgs));
+    TaskArgs *fibbArgs = (TaskArgs *)malloc(sizeof(TaskArgs));
     fibbArgs->results = results;
     fibbArgs->messages = fibbQueue;
     fibbArgs->handler = fibbonachiThread;
@@ -91,6 +89,45 @@ void *taskThreadWrapper(void * _args){
             threadArgs->results = taskArgs->results;
             threadArgs->tMessage = tMessage;
             taskArgs->handler(threadArgs);
+        }
+    }
+}
+
+void threadPoolHandler(int count, Queue *messages, Queue *results) {
+    pthread_t *threadIds = (pthread_t *)malloc(count * sizeof(pthread_t));
+
+    for(int i=0; i< count; i++){
+        pthread_t thread;
+        threadIds[i] = thread;
+
+        TaskArgs *taskArgs = (TaskArgs *)malloc(sizeof(TaskArgs));
+        taskArgs->results = results;
+        taskArgs->messages = messages;
+
+        pthread_create(&threadIds[i], NULL, poolThreadWrapper, taskArgs);
+    }
+}
+
+void * poolThreadWrapper(void * _args){
+    TaskArgs *taskArgs = (TaskArgs*)_args;
+
+    while(1){
+        TMessage *tMessage = (TMessage *)removeFromQueue(taskArgs->messages);
+
+        if( tMessage != NULL ) {
+            ThreadArgs *threadArgs = (ThreadArgs *)malloc(sizeof(ThreadArgs));
+            threadArgs->results = taskArgs->results;
+            threadArgs->tMessage = tMessage;
+
+            if (tMessage->Type == FIBONACCI)
+                fibbonachiThread(threadArgs);
+            else if (tMessage->Type == POW)
+                powThread(threadArgs);
+            else if (tMessage->Type == BUBBLE_SORT_UINT64)
+                bubbleSortThread(threadArgs);
+            else if (tMessage->Type == STOP) {
+                break;
+            }
         }
     }
 }
