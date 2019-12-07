@@ -52,3 +52,20 @@ typedef struct {
     Queue * results;
     void *(*handler)(void *args);
 } TaskArgs;
+
+typedef struct {
+    Queue * queueWaitTime;
+    Queue * writeTime;
+    Queue * readTime;
+    Queue * algTime;
+} ReportingArgs;
+
+typedef struct {
+    Queue * messages;
+    Queue * reporter;
+} ReaderArgs;
+
+typedef struct {
+    Queue * results;
+    Queue * reporter;
+} WriterArgs;

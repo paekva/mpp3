@@ -3,8 +3,7 @@
 #include <stdio.h>
 
 void *reader(void* _args) {
-    Queue* messages = (Queue *) _args;
-    getMessages(messages);
-    printf("size: %d\n", getQueueSize(messages));
+    ReaderArgs* args = (ReaderArgs *) _args;
+    getMessages(args->messages);
     return NULL;
 }

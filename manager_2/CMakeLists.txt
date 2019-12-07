@@ -13,7 +13,7 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 
 find_library(PTHREAD_LIBRARY pthread)
 
-add_executable(manager_2 main.c functions.c functions.h strategy.c strategy.h writer.c writer.h types.h protobufHandler.cpp protobufHandler.h queue.c queue.h reader.c reader.h parser.c parser.h)
+add_executable(manager_2 main.c functions.c functions.h reporter.c reporter.h strategy.c strategy.h writer.c writer.h types.h protobufHandler.cpp protobufHandler.h queue.c queue.h reader.c reader.h parser.c parser.h)
 
 TARGET_LINK_LIBRARIES(manager_2 proto3 ${PROTOBUF_LIBRARY})
 target_link_libraries(manager_2 ${PTHREAD_LIBRARY})
