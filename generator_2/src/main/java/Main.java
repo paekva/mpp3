@@ -69,9 +69,9 @@ public class Main {
         try{
             parseOptions(args);
             initGenerator();
+            int messageCount = generator.getMessagesCount();
 
             /*
-            int messageCount = generator.getMessagesCount();
 
             for (int i = 0; i < messageCount; i++) {
                 FileOutputStream fos = new FileOutputStream("hub");
@@ -91,31 +91,32 @@ public class Main {
             for(int i=0;i<messageCount;i++) {
                 Thread.sleep((long)intervals[i]);
             }
+            */
 
-        while(i<30){
-            System.out.println("hello");
+            int i =0 ;
+            while (i < messageCount){
+                System.out.println("hello");
+                TMessage.TMessageProto message = TMessage.TMessageProto.newBuilder()
+                        .setType(i%3)
+                        .setSize(1)
+                        .addData(1)
+                        .build();
+
+                FileOutputStream fos = new FileOutputStream("hub");
+                message.writeTo(fos);
+                fos.close();
+                Thread.sleep(1000);
+                i++;
+            }
+
             TMessage.TMessageProto message = TMessage.TMessageProto.newBuilder()
-                    .setType(i%3)
+                    .setType(3)
                     .setSize(1)
                     .addData(1)
                     .build();
 
             FileOutputStream fos = new FileOutputStream("hub");
             message.writeTo(fos);
-            fos.close();
-            Thread.sleep(1000);
-            i++;
-        }
-
-        TMessage.TMessageProto message = TMessage.TMessageProto.newBuilder()
-                .setType(3)
-                .setSize(1)
-                .addData(1)
-                .build();
-
-        FileOutputStream fos = new FileOutputStream("hub");
-        message.writeTo(fos);
-             */
 
         } catch (Exception e){
             System.out.println(e.getMessage());
