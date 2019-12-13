@@ -55,7 +55,7 @@ public abstract class Generator {
     public double[] getMessagesIntervals(int messagesCount){
         double[] result = new double[messagesCount];
         for (int i=0;i<messagesCount;i++){
-            result[i] = getRandomValue(0, 20);
+            result[i] = getRandomValue(10, 50);
         }
         return result;
     }

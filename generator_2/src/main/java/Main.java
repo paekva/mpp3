@@ -69,54 +69,23 @@ public class Main {
         try{
             parseOptions(args);
             initGenerator();
+            int i =0 ;
             int messageCount = generator.getMessagesCount();
+            double[] intervals = generator.getMessagesIntervals(messageCount);
 
-            /*
-
-            for (int i = 0; i < messageCount; i++) {
-                FileOutputStream fos = new FileOutputStream("hub");
+            while (i < messageCount){
                 TMessage.TMessageProto message = getMessage();
+                FileOutputStream fos = new FileOutputStream("hub");
                 message.writeTo(fos);
                 fos.close();
+                Thread.sleep((long)intervals[i] * 100);
+                i++;
             }
 
             FileOutputStream fos = new FileOutputStream("hub");
             MessageCreator messageCreator = new MessageCreator();
             messageCreator.getMessage(EType.STOP).writeTo(fos);
             fos.close();
-            */
-
-            /*
-            double[] intervals = generator.getMessagesIntervals(messageCount);
-            for(int i=0;i<messageCount;i++) {
-                Thread.sleep((long)intervals[i]);
-            }
-            */
-
-            int i =0 ;
-            while (i < messageCount){
-                System.out.println("hello");
-                TMessage.TMessageProto message = TMessage.TMessageProto.newBuilder()
-                        .setType(i%3)
-                        .setSize(1)
-                        .addData(1)
-                        .build();
-
-                FileOutputStream fos = new FileOutputStream("hub");
-                message.writeTo(fos);
-                fos.close();
-                Thread.sleep(1000);
-                i++;
-            }
-
-            TMessage.TMessageProto message = TMessage.TMessageProto.newBuilder()
-                    .setType(3)
-                    .setSize(1)
-                    .addData(1)
-                    .build();
-
-            FileOutputStream fos = new FileOutputStream("hub");
-            message.writeTo(fos);
 
         } catch (Exception e){
             System.out.println(e.getMessage());
