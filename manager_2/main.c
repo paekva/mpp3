@@ -6,12 +6,8 @@
 #include "strategy.h"
 #include <stdlib.h>
 #include "reporter.h"
-#include "protobufHandler.h"
 
 int main(int argc, char* argv[]) {
-    getMessages(NULL);
-
-    /*
     pthread_t readerID, reporterID, writerID;
 
     Params params = getOptions(argc, argv);
@@ -57,5 +53,4 @@ int main(int argc, char* argv[]) {
     pthread_join(writerID, NULL);
 
     return 0;
-     */
 }

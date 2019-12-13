@@ -23,6 +23,7 @@ void threadPerThreadHandler(Queue *messages, Queue *results) {
             else if (tMessage->Type == BUBBLE_SORT_UINT64)
                 result = pthread_create(&taskHandlerId, NULL, bubbleSortThread, threadArgs);
             else if (tMessage->Type == STOP) {
+                addToQueue(results, "STOP");
                 break;
             }
         }
@@ -68,6 +69,7 @@ void threadPerTaskHandler(Queue *messages, Queue *results) {
                 addToQueue(fibbQueue, tMessage);
                 addToQueue(powQueue, tMessage);
                 addToQueue(sortQueue, tMessage);
+                addToQueue(results, "STOP");
                 break;
             }
         }
@@ -126,6 +128,7 @@ void * poolThreadWrapper(void * _args){
             else if (tMessage->Type == BUBBLE_SORT_UINT64)
                 bubbleSortThread(threadArgs);
             else if (tMessage->Type == STOP) {
+                addToQueue(taskArgs->results, "STOP");
                 break;
             }
         }
