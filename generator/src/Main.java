@@ -12,26 +12,19 @@ public class Main {
 
     private static void parseOptions(String[] args) throws Exception {
         for(int i = 0; i < args.length; i++){
-            switch(args[i]){
-                case "--mode": {
-                    i++;
-                    modeValue = args[i];
-                    break;
-                }
-                case "--param": {
-                    i++;
-                    params[0] = Double.parseDouble(args[i]);
-                    i++;
-                    params[1] = Double.parseDouble(args[i]);
-                    break;
-                }
-                case "-n": {
-                    i++;
-                    notifyInterval = Integer.parseInt(args[i]);
-                    break;
-                }
-                default:
-                    throw new Exception("Wrong generator options");
+            if ("--mode".equals(args[i])) {
+                i++;
+                modeValue = args[i];
+            } else if ("--param".equals(args[i])) {
+                i++;
+                params[0] = Double.parseDouble(args[i]);
+                i++;
+                params[1] = Double.parseDouble(args[i]);
+            } else if ("-n".equals(args[i])) {
+                i++;
+                notifyInterval = Integer.parseInt(args[i]);
+            } else {
+                throw new Exception("Wrong generator options");
             }
         }
     }
@@ -60,22 +53,18 @@ public class Main {
     }
 
     private static void initGenerator() {
-        switch (modeValue){
-            case "uniform": {
-                generator = new Uniform(params);
-                break;
-            }
-            case "normal": {
-                generator = new Normal(params);
-                break;
-            }
-            default:
-                generator = new Exponential(params);
+        if ("uniform".equals(modeValue)) {
+            generator = new Uniform(params);
+        } else if ("normal".equals(modeValue)) {
+            generator = new Normal(params);
+        } else {
+            generator = new Exponential(params);
         }
     }
 
     public static void main(String[] args) {
         try{
+            /*
             parseOptions(args);
             initGenerator();
 
@@ -90,7 +79,9 @@ public class Main {
             messageCreator.getMessage(EType.STOP).writeTo(fos);
             
             fos.close();
+             */
 
+            System.out.println("hel");
             /*
             double[] intervals = generator.getMessagesIntervals(messageCount);
             for(int i=0;i<messageCount;i++) {

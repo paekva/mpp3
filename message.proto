@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option java_outer_classname = "TMessageProto";
+option java_outer_classname="TMessage";
 
 message TMessageProto {
   uint32 type = 1;
