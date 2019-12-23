@@ -37,10 +37,10 @@ int main(int argc, char* argv[]) {
     pthread_create(&readerID, NULL, reader, readerArgs);
 
     // start writing thread
-    pthread_create(&writerID, NULL, writer, writerArgs);
+    // pthread_create(&writerID, NULL, writer, writerArgs);
 
     // start reporter thread
-    pthread_create(&reporterID, NULL, reporter, reportingArgs);
+    // pthread_create(&reporterID, NULL, reporter, reportingArgs);
 
     if (params.strategy == PER_THREAD)
         threadPerThreadHandler(messages, results);
@@ -50,7 +50,7 @@ int main(int argc, char* argv[]) {
         threadPoolHandler(params.threadsCount, messages, results);
 
     pthread_join(readerID, NULL);
-    pthread_join(writerID, NULL);
+    // pthread_join(writerID, NULL);
 
     return 0;
 }

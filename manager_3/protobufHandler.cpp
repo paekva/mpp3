@@ -10,11 +10,12 @@ using namespace std;
 void getMessages(Queue * messages) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
 
+    int counter = 0;
     while(true){
         TMessageProto message;
         ifstream input("hub", ios::in | ios::binary);
         message.ParseFromIstream(&input);
-        cout<< "task" << endl;
+        counter++;
 
         auto *m1 = (TMessage *)malloc(sizeof(TMessage));
         m1->Type = message.type();
@@ -23,7 +24,7 @@ void getMessages(Queue * messages) {
         addToQueueWrapper(messages, m1);
 
         if(message.type()==3){
-            std::cout << "FINISH" << std::endl;
+            std::cout << "FINISH " << counter << std::endl;
 
             break;
         }

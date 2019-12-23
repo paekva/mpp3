@@ -7,3 +7,5 @@ generator/.idea/
 generator_2/generator_2.iml
 manager_2/cmake-build-debug/
 manager_2/.idea/
+manager_3/.idea/
+manager_3/cmake-build-debug/
