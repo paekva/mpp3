@@ -1,7 +1,7 @@
 #include <getopt.h>
 #include <stdlib.h>
 #include <string.h>
-#include "types.h"
+#include "common/types.h"
 
 Params getOptions(int argc, char* argv[]){
     Strategy strategy = PER_THREAD;

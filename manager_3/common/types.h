@@ -61,11 +61,6 @@ typedef struct {
 } ReportingArgs;
 
 typedef struct {
-    Queue * messages;
-    Queue * reporter;
-} ReaderArgs;
-
-typedef struct {
     Queue * results;
     Queue * reporter;
 } WriterArgs;

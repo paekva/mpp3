@@ -1,8 +1,8 @@
 #ifndef MANAGER_2_PROTOBUFHANDLER_H
 #define MANAGER_2_PROTOBUFHANDLER_H
 
-#include "types.h"
-#include "queue.h"
+#include "../common/types.h"
+#include "../common/queue.h"
 
 void getMessages(Queue * messages);
 

@@ -3,13 +3,11 @@ import generators.Generator;
 import generators.Normal;
 import generators.Uniform;
 import types.EType;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class Main {
     private static String modeValue = "";
-    private static int notifyInterval = 0;
     private static double[] params = new double[2];
     private static Generator generator;
 
@@ -23,9 +21,6 @@ public class Main {
                 params[0] = Double.parseDouble(args[i]);
                 i++;
                 params[1] = Double.parseDouble(args[i]);
-            } else if ("-n".equals(args[i])) {
-                i++;
-                notifyInterval = Integer.parseInt(args[i]);
             } else {
                 throw new Exception("Wrong generator options");
             }
@@ -37,7 +32,6 @@ public class Main {
             EType messageType = generator.getMessageType();
             MessageCreator messageCreator = new MessageCreator();
 
-            System.out.println(messageType + "  " + messageType.index());
             switch (messageType){
                 case FIBONACCI:
                     return messageCreator.getMessage(messageType, generator.getFibbonachiNumber());
@@ -56,12 +50,12 @@ public class Main {
     }
 
     private static void initGenerator() {
-        if ("uniform".equals(modeValue)) {
-            generator = new Uniform(params);
+        if ("exp".equals(modeValue)) {
+            generator = new Exponential(params);
         } else if ("normal".equals(modeValue)) {
             generator = new Normal(params);
         } else {
-            generator = new Exponential(params);
+            generator = new Uniform(params);
         }
     }
 
