@@ -17,6 +17,8 @@ void addToQueue(Queue* q, void* newValue){
         // empty queue
         q->tail = newNode;
         q->head = newNode;
+
+        pthread_cond_signal(&q->condVar);
     } else {
         tail->next = newNode;
         q->tail = newNode;
@@ -35,6 +37,7 @@ void* removeFromQueue(Queue* q){
     }
 
     pthread_mutex_lock(&q->mutexId);
+    // pthread_cond_wait(&q->condVar, &q->mutexId);
     if(q->head != NULL && q->tail != NULL){
         // not empty
 
@@ -74,6 +77,8 @@ Queue *createQueue(){
     newQueue->head = NULL;
     newQueue->tail = NULL;
     pthread_mutex_init(&newQueue->mutexId, NULL);
+    pthread_cond_init(&newQueue->condVar, NULL);
+
     return newQueue;
 }
 

@@ -31,7 +31,7 @@ void getMessages(Queue * messages) {
 
         clock_gettime (CLOCK_REALTIME, &endTime);
         duration=1000000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec);
-        fprintf (readerStats, "%ld\n", duration);
+        fprintf(readerStats, "%ld\n", duration);
 
         if(message.type()==3){
             std::cout << "FINISH " << counter << std::endl;

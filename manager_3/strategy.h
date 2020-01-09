@@ -1,3 +1,3 @@
 #include "common/types.h"
 
-void threadPerThreadHandler(Queue *messages, Queue *results);
+void perThreadHandler(Queue *messages, Queue *results);

@@ -34,4 +34,5 @@ void *writer(void* _args) {
     }
 
     fclose(fin);
+    fclose(readerStats);
 }

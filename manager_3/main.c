@@ -14,15 +14,14 @@ int main(int argc, char* argv[]){
     Params params = getOptions(argc, argv);
 
     pthread_create(&readerID, NULL, reader, messages);
-    // pthread_create(&writerID, NULL, writer, results);
+    pthread_create(&writerID, NULL, writer, results);
 
 
     // TODO: -------------------LOGIC-------------------------------
     // TODO: -------------------------------------------------------
 
     if (params.strategy == PER_THREAD)
-        printf("PER_THREAD");
-        // threadPerThreadHandler(messages, results);
+        perThreadHandler(messages, results);
     else if (params.strategy == PER_TASK)
         printf("PER_TASK");
         // threadPerTaskHandler(messages, results);
@@ -34,10 +33,8 @@ int main(int argc, char* argv[]){
     // TODO: -------------------LOGIC-------------------------------
 
 
-
     pthread_join(readerID, NULL);
+    printf("DONE READER\n");
     // pthread_join(writerID, NULL);
-
-    printf("finsihs\n");
     return 0;
 }

@@ -40,6 +40,7 @@ typedef struct
     QueueNode* head;
     QueueNode* tail;
     pthread_mutex_t mutexId;
+    pthread_cond_t condVar;
 } Queue;
 
 typedef struct {
