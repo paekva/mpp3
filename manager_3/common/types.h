@@ -59,8 +59,3 @@ typedef struct {
     Queue * readTime;
     Queue * algTime;
 } ReportingArgs;
-
-typedef struct {
-    Queue * results;
-    Queue * reporter;
-} WriterArgs;
