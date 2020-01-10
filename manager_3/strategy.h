@@ -1,3 +1,3 @@
 #include "common/types.h"
 
-void perThreadHandler(IOArgs *_reader, Queue *results);
+void perThreadHandler(IOArgs *reader, IOArgs *writer);

@@ -44,25 +44,12 @@ typedef struct
 } Queue;
 
 typedef struct {
-    TMessage * tMessage;
-    Queue * results;
-} ThreadArgs;
-
-typedef struct {
-    Queue * messages;
-    Queue * results;
-    void *(*handler)(void *args);
-} TaskArgs;
-
-typedef struct {
-    Queue * queueWaitTime;
-    Queue * writeTime;
-    Queue * readTime;
-    Queue * algTime;
-} ReportingArgs;
-
-typedef struct {
     Queue *q;
     pthread_cond_t* condVar;
     pthread_mutex_t* mutex;
 } IOArgs;
+
+typedef struct {
+    TMessage * tMessage;
+    IOArgs * writer;
+} ThreadArgs;

@@ -38,15 +38,14 @@ void getMessages(IOArgs *args) {
         m1->Data = array;
 
         addToQueueWrapper(args->q, m1);
+        pthread_cond_signal(args->condVar);
 
         clock_gettime (CLOCK_REALTIME, &endTime);
         duration=1000000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec);
         fprintf(readerStats, "%ld\n", duration);
 
-        if(message.type()==3){
-            std::cout << "FINISH " << counter << std::endl;
+        if(message.type()==3)
             break;
-        }
     }
 
 }

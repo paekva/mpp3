@@ -69,6 +69,7 @@ public class Main {
 
             while (i < messageCount){
                 TMessage.TMessageProto message = getMessage();
+                System.out.println(message.getType());
                 FileOutputStream fos = new FileOutputStream("hub");
                 message.writeTo(fos);
                 fos.close();

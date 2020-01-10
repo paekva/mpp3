@@ -1,3 +1,3 @@
-void *fibbonachiThread(void * _args);
-void *powThread(void * _args);
-void *bubbleSortThread(void * _args);
+void *fibbonachiTask(void * _args);
+void *powTask(void * _args);
+void *bubbleSortTask(void * _args);

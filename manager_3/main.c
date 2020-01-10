@@ -27,15 +27,21 @@ int main(int argc, char* argv[]){
             &readerC,
             &readerM
     };
+    IOArgs writerArgs = {
+            results,
+            &writerC,
+            &writerM
+    };
+
     pthread_create(&readerID, NULL, reader, &readerArgs);
-    // pthread_create(&writerID, NULL, writer, results);
+    pthread_create(&writerID, NULL, writer, &writerArgs);
 
 
     // TODO: -------------------LOGIC-------------------------------
     // TODO: -------------------------------------------------------
 
     if (params.strategy == PER_THREAD)
-        perThreadHandler(&readerArgs, results);
+        perThreadHandler(&readerArgs, &writerArgs);
     else if (params.strategy == PER_TASK)
         printf("PER_TASK");
         // threadPerTaskHandler(messages, results);
@@ -46,9 +52,10 @@ int main(int argc, char* argv[]){
     // TODO: -------------------------------------------------------
     // TODO: -------------------LOGIC-------------------------------
 
-
     pthread_join(readerID, NULL);
     printf("DONE READER\n");
-    // pthread_join(writerID, NULL);
+    pthread_cancel(writerID);
+    pthread_join(writerID, NULL);
+
     return 0;
 }

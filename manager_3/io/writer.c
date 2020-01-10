@@ -4,7 +4,7 @@
 #include "stdio.h"
 
 void *writer(void* _args) {
-    Queue *results = (Queue *)_args;
+    IOArgs *writer = (IOArgs *)_args;
 
     FILE* fin = fopen("../results.txt", "w");
     if(fin == NULL)
@@ -18,19 +18,39 @@ void *writer(void* _args) {
         long int duration;
 
         clock_gettime(CLOCK_REALTIME, &startTime);
-        char *message = removeFromQueue(results);
+        TMessage *result = (TMessage *)removeFromQueue(writer->q);
 
-        if(message != NULL) {
-            fprintf(fin,"result %s\n", message);
-            i++;
-
-            clock_gettime(CLOCK_REALTIME, &endTime);;
-            duration=1000000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec);
-            fprintf (readerStats, "%ld\n", duration);
-
-            if(strcmp(message, "STOP") == 0)
-                break;
+        if(result == NULL) {
+            // wait for condition
+            pthread_mutex_lock(writer->mutex);
+            pthread_cond_wait(writer->condVar, writer->mutex);
+            pthread_mutex_unlock(writer->mutex);
+            continue;
         }
+
+        pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
+        printf("TYPE -> %d \n", result->Type);
+        switch(result->Type){
+                case 0:
+                case 1: {
+                    printf("result pow/fibb\n");
+                    fprintf(fin,"result %hhu\n", result->Data[0]);
+                    break;
+                }
+                case 2:{
+                    printf("result bubble %lu\n", result->Size);
+                    fprintf(fin,"result %hhu\n", result->Data[0]);
+                    break;
+                }
+                default:
+                    return NULL;
+        }
+        i++;
+        pthread_setcancelstate(PTHREAD_CANCEL_DEFERRED, NULL);
+
+        clock_gettime(CLOCK_REALTIME, &endTime);
+        duration=1000000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec);
+        fprintf (readerStats, "%ld\n", duration);
     }
 
     fclose(fin);
