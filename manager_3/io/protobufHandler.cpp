@@ -12,7 +12,7 @@ void getMessages(IOArgs *args) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
 
     int counter = 0;
-    FILE *readerStats = fopen("../readerStats.txt", "w");
+    FILE *readerStats = fopen("../readerStats.txt", "w+");
     while(true){
         struct timespec startTime, endTime;
         long int duration;

@@ -3,14 +3,38 @@
 #include "string.h"
 #include "stdio.h"
 
+void writeToFileSingle(FILE* fin, pthread_mutex_t* mutex, uint8_t message){
+    printf("hey ");
+    pthread_mutex_lock(mutex);
+    printf("hey 2 ");
+    int res = fprintf(fin,"%hhu\n", message);
+    printf("%d\n", res);
+
+    pthread_mutex_unlock(mutex);
+}
+
+void writeToFileMultiple(FILE* fin, pthread_mutex_t* mutex, int size, uint8_t message){
+    pthread_mutex_lock(mutex);
+    for(int j =0;j<size; j++){
+        fprintf(fin,"%hhu ", message);
+    }
+    fprintf(fin,"\n");
+    pthread_mutex_unlock(mutex);
+}
+
 void *writer(void* _args) {
     IOArgs *writer = (IOArgs *)_args;
 
-    FILE* fin = fopen("../results.txt", "w");
+    pthread_mutex_t resultsMutex;
+    pthread_mutex_init(&resultsMutex, NULL);
+    FILE* fin = fopen("../results.txt", "w+");
     if(fin == NULL)
         return NULL;
 
-    FILE *readerStats = fopen("../readerStats.txt", "w");
+    FILE *writerStats = fopen("../writerStats.txt", "w+");
+    pthread_mutex_t statisticsMutex;
+    pthread_mutex_init(&statisticsMutex, NULL);
+
     int i = 0;
 
     while(1) {
@@ -29,30 +53,26 @@ void *writer(void* _args) {
         }
 
         pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
-        printf("TYPE -> %d \n", result->Type);
+        if(result->Type == STOP)
+            break;
+
         switch(result->Type){
                 case 0:
                 case 1: {
-                    printf("result pow/fibb\n");
-                    fprintf(fin,"result %hhu\n", result->Data[0]);
-                    break;
-                }
-                case 2:{
-                    printf("result bubble %lu\n", result->Size);
-                    fprintf(fin,"result %hhu\n", result->Data[0]);
+                    writeToFileSingle(fin, &resultsMutex, result->Data[0]);
                     break;
                 }
                 default:
-                    return NULL;
+                    writeToFileMultiple(fin, &resultsMutex, result->Size, result->Data[0]);
         }
         i++;
         pthread_setcancelstate(PTHREAD_CANCEL_DEFERRED, NULL);
 
         clock_gettime(CLOCK_REALTIME, &endTime);
         duration=1000000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec);
-        fprintf (readerStats, "%ld\n", duration);
+        writeToFileSingle(writerStats, &statisticsMutex, duration);
     }
 
     fclose(fin);
-    fclose(readerStats);
+    fclose(writerStats);
 }
