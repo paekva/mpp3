@@ -27,7 +27,15 @@ void getMessages(IOArgs *args) {
         auto *m1 = (TMessage *)malloc(sizeof(TMessage));
         m1->Type = message.type();
         m1->Size = message.size();
-        m1->Data = nullptr; //  message.data();
+
+        int count = message.data().size();
+        auto *array = new uint8_t[count];
+
+        for(int i=0;i<count;i++){
+            array[i] = message.data(i);
+        }
+
+        m1->Data = array;
 
         addToQueueWrapper(args->q, m1);
 

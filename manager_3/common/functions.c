@@ -1,32 +1,13 @@
 #include "types.h"
 #include "queue.h"
-#include <unistd.h>
-
-void *fibbonachiThread(void * _args){
-    ThreadArgs *args = (ThreadArgs *)_args;
-    sleep(2);
-    addToQueue(args->results, "fibb done");
-}
-
-void *powThread(void * _args){
-    ThreadArgs *args = (ThreadArgs *)_args;
-    sleep(1);
-    addToQueue(args->results, "pow done");
-}
-
-void *bubbleSortThread(void * _args){
-    ThreadArgs *args = (ThreadArgs *)_args;
-    sleep(3);
-    addToQueue(args->results, "sort done");
-}
 
 int fibbonachi(int number){
-    if(number>1){
-        return fibbonachi(number-1) + fibbonachi(number-2);
-    } else return number;
+    if(number<1) return 0;
+    if(number == 1) return 1;
+    return fibbonachi(number-1) + fibbonachi(number-2);
 }
 
-uint64_t* bubbleSort(uint64_t* array, int arrayLength){
+uint8_t* bubbleSort(uint8_t* array, int arrayLength){
     int i, j;
     for(i = 0; i < arrayLength; i++){
         for(j = arrayLength - 1; j > i; j--){
@@ -40,11 +21,32 @@ uint64_t* bubbleSort(uint64_t* array, int arrayLength){
     return array;
 }
 
-int pow(int base, int power){
+int powMethod(int base, int power){
     int i;
-    long result = 1;
+    int result = 1;
     for(i = 0; i<power; i++){
         result = result * base;
     }
     return result;
+}
+
+void *fibbonachiThread(void * _args){
+    ThreadArgs *args = (ThreadArgs *)_args;
+    uint8_t num = args->tMessage->Data[0];
+    int result = fibbonachi(num);
+    // printf("result %d %d\n", num, result);
+    addToQueue(args->results, &result);
+}
+
+void *powThread(void * _args){
+    ThreadArgs *args = (ThreadArgs *)_args;
+    uint8_t * fibNum = args->tMessage->Data;
+    int result = powMethod(fibNum[0], fibNum[1]);
+    addToQueue(args->results, &result);
+}
+
+void *bubbleSortThread(void * _args){
+    ThreadArgs *args = (ThreadArgs *)_args;
+    uint8_t *result = bubbleSort(args->tMessage->Data, args->tMessage->Size);
+    addToQueue(args->results, result);
 }
