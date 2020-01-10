@@ -1,13 +1,14 @@
 #include <iostream>
 #include <fstream>
+#include <pthread.h>
 #include "message.pb.h"
 #include "../common/types.h"
 using namespace std;
 
-extern "C" void getMessages(Queue * messages);
+extern "C" void getMessages(IOArgs *args);
 extern "C" void addToQueueWrapper(Queue * messages, TMessage *m1);
 
-void getMessages(Queue * messages) {
+void getMessages(IOArgs *args) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
 
     int counter = 0;
@@ -27,7 +28,8 @@ void getMessages(Queue * messages) {
         m1->Type = message.type();
         m1->Size = message.size();
         m1->Data = nullptr; //  message.data();
-        addToQueueWrapper(messages, m1);
+
+        addToQueueWrapper(args->q, m1);
 
         clock_gettime (CLOCK_REALTIME, &endTime);
         duration=1000000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec);

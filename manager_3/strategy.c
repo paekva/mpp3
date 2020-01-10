@@ -4,10 +4,10 @@
 #include "common/queue.h"
 #include "common/functions.h"
 
-void perThreadHandler(Queue *messages, Queue *results) {
+void perThreadHandler(IOArgs *_reader, Queue *results) {
+    IOArgs *reader = (IOArgs *)_reader;
     while(1){
-        TMessage *tMessage = (TMessage *)removeFromQueue(messages);
-
+        TMessage *tMessage = (TMessage *)removeFromQueue(reader->q);
         if( tMessage != NULL ) {
             if (tMessage->Type == STOP) {
                 addToQueue(results, "STOP");

@@ -4,6 +4,6 @@
 #include "../common/types.h"
 #include "../common/queue.h"
 
-void getMessages(Queue * messages);
+void getMessages(IOArgs *args);
 
 #endif //MANAGER_2_PROTOBUFHANDLER_H

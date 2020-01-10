@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 void *reader(void* _args) {
-    Queue* messages = (Queue *) _args;
-    getMessages(messages);
+    IOArgs* args = (IOArgs *) _args;
+    getMessages(args);
     return NULL;
 }

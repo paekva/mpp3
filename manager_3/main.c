@@ -9,19 +9,33 @@
 
 int main(int argc, char* argv[]){
     pthread_t readerID, writerID;
+    pthread_cond_t readerC, writerC;
+    pthread_mutex_t readerM, writerM;
+
+    pthread_mutex_init(&readerM, NULL);
+    pthread_mutex_init(&writerM, NULL);
+    pthread_cond_init(&readerC, NULL);
+    pthread_cond_init(&writerC, NULL);
+
     Queue *messages = createQueue();
     Queue *results = createQueue();
     Params params = getOptions(argc, argv);
 
-    pthread_create(&readerID, NULL, reader, messages);
-    pthread_create(&writerID, NULL, writer, results);
+
+    IOArgs readerArgs = {
+            messages,
+            &readerC,
+            &readerM
+    };
+    pthread_create(&readerID, NULL, reader, &readerArgs);
+    // pthread_create(&writerID, NULL, writer, results);
 
 
     // TODO: -------------------LOGIC-------------------------------
     // TODO: -------------------------------------------------------
 
     if (params.strategy == PER_THREAD)
-        perThreadHandler(messages, results);
+        perThreadHandler(&readerArgs, results);
     else if (params.strategy == PER_TASK)
         printf("PER_TASK");
         // threadPerTaskHandler(messages, results);

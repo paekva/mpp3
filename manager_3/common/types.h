@@ -60,3 +60,9 @@ typedef struct {
     Queue * readTime;
     Queue * algTime;
 } ReportingArgs;
+
+typedef struct {
+    Queue *q;
+    pthread_cond_t* condVar;
+    pthread_mutex_t* mutex;
+} IOArgs;
