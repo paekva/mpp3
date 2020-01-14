@@ -42,11 +42,9 @@ int main(int argc, char* argv[]){
 
     if (params.strategy == PER_THREAD)
         perThreadHandler(&readerArgs, &writerArgs);
-    else if (params.strategy == PER_TASK)
-        printf("PER_TASK");
+    else if (params.strategy == PER_TASK) printf("PER_TASK");
         // threadPerTaskHandler(messages, results);
-    else
-        printf("THREAD_POOL");
+    else printf("THREAD_POOL");
         // threadPoolHandler(params.threadsCount, messages, results);
 
     // TODO: -------------------------------------------------------

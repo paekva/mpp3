@@ -11,8 +11,12 @@ extern "C" void addToQueueWrapper(Queue * messages, TMessage *m1);
 void getMessages(IOArgs *args) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-    int counter = 0;
-    FILE *readerStats = fopen("../readerStats.txt", "w+");
+    std::ofstream readerInfo;
+    readerInfo.open("./manager_3/results/reader.txt");
+    if(!readerInfo.is_open()){
+        cout << strerror(errno) << endl;
+    }
+
     while(true){
         struct timespec startTime, endTime;
         long int duration;
@@ -22,7 +26,9 @@ void getMessages(IOArgs *args) {
 
         clock_gettime (CLOCK_REALTIME, &startTime);
         bool success = message.ParseFromIstream(&input);
-        counter++;
+        if(!success) {
+            continue;
+        }
 
         auto *m1 = (TMessage *)malloc(sizeof(TMessage));
         m1->Type = message.type();
@@ -42,10 +48,15 @@ void getMessages(IOArgs *args) {
 
         clock_gettime (CLOCK_REALTIME, &endTime);
         duration=1000000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec);
-        fprintf(readerStats, "%ld\n", duration);
+
+        if (readerInfo.is_open())
+        {
+            readerInfo << duration << endl;
+        }
 
         if(message.type()==3)
             break;
     }
 
+    if (readerInfo.is_open()) readerInfo.close();
 }

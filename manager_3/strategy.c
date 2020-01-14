@@ -7,27 +7,29 @@
 
 void *chooseHandlerFunc(void *_args){
     ThreadArgs *args = (ThreadArgs *)_args;
-    TMessage taskResult = {
-            args->tMessage->Type,
-            0,
-            NULL
-    };
+
+    TMessage* taskResult = malloc(sizeof(TMessage));
+    taskResult->Type = args->tMessage->Type;
+    taskResult->Size = 0;
+    taskResult->Data = NULL;
 
     if (args->tMessage->Type == FIBONACCI)
-        taskResult.Data = fibbonachiTask(args);
+        (*taskResult).Data = fibbonachiTask(args);
     else if (args->tMessage->Type == POW)
-        taskResult.Data = powTask(args);
+        (*taskResult).Data = powTask(args);
     else {
-        taskResult.Data = bubbleSortTask(args);
-        taskResult.Size = args->tMessage->Size;
+        (*taskResult).Data = bubbleSortTask(args);
+        (*taskResult).Size = args->tMessage->Size;
     }
 
-    addToQueue(args->writer->q, &taskResult);
+    addToQueue(args->writer->q, taskResult);
     pthread_cond_signal(args->writer->condVar);
+
+    return NULL;
 }
 
 void perThreadHandler(IOArgs *reader, IOArgs *writer) {
-    Queue *ids = createQueue();
+    // Queue *ids = createQueue();
 
     while(1) {
         TMessage *tMessage = (TMessage *)removeFromQueue(reader->q);
@@ -55,7 +57,7 @@ void perThreadHandler(IOArgs *reader, IOArgs *writer) {
 
         pthread_t taskHandlerId;
         pthread_t *pointer = &taskHandlerId;
-        addToQueue(ids, pointer);
+        // addToQueue(ids, pointer);
 
         ThreadArgs *threadArgs = (ThreadArgs *)malloc(sizeof(ThreadArgs));
         threadArgs->writer = writer;

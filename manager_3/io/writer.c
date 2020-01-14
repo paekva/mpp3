@@ -4,21 +4,22 @@
 #include "stdio.h"
 
 void writeToFileSingle(FILE* fin, pthread_mutex_t* mutex, uint8_t message){
-    printf("hey ");
     pthread_mutex_lock(mutex);
-    printf("hey 2 ");
-    int res = fprintf(fin,"%hhu\n", message);
-    printf("%d\n", res);
-
+    fprintf(fin,"%hhu\n", message);
+    printf("%hhu\n", message);
+    fflush(fin);
     pthread_mutex_unlock(mutex);
 }
 
 void writeToFileMultiple(FILE* fin, pthread_mutex_t* mutex, int size, uint8_t message){
     pthread_mutex_lock(mutex);
+    /*
     for(int j =0;j<size; j++){
         fprintf(fin,"%hhu ", message);
     }
     fprintf(fin,"\n");
+    fflush(fin);
+     */
     pthread_mutex_unlock(mutex);
 }
 
@@ -27,11 +28,11 @@ void *writer(void* _args) {
 
     pthread_mutex_t resultsMutex;
     pthread_mutex_init(&resultsMutex, NULL);
-    FILE* fin = fopen("../results.txt", "w+");
+    FILE* fin = fopen("./manager_3/results/results.txt", "w");
     if(fin == NULL)
         return NULL;
 
-    FILE *writerStats = fopen("../writerStats.txt", "w+");
+    FILE *writerInfo = fopen("./manager_3/results/writer.txt", "w");
     pthread_mutex_t statisticsMutex;
     pthread_mutex_init(&statisticsMutex, NULL);
 
@@ -70,9 +71,9 @@ void *writer(void* _args) {
 
         clock_gettime(CLOCK_REALTIME, &endTime);
         duration=1000000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec);
-        writeToFileSingle(writerStats, &statisticsMutex, duration);
+        writeToFileSingle(writerInfo, &statisticsMutex, duration);
     }
 
     fclose(fin);
-    fclose(writerStats);
+    fclose(writerInfo);
 }
