@@ -28,7 +28,7 @@ void *chooseHandlerFunc(void *_args){
     return NULL;
 }
 
-void perThreadHandler(IOArgs *reader, IOArgs *writer) {
+void perThreadHandler(IOArgs *reader, IOArgs *writer, FILE *statistics) {
     // Queue *ids = createQueue();
 
     while(1) {
@@ -62,6 +62,7 @@ void perThreadHandler(IOArgs *reader, IOArgs *writer) {
         ThreadArgs *threadArgs = (ThreadArgs *)malloc(sizeof(ThreadArgs));
         threadArgs->writer = writer;
         threadArgs->tMessage = tMessage;
+        threadArgs->statistics = statistics;
 
         pthread_create(pointer, NULL, chooseHandlerFunc, threadArgs);
     }

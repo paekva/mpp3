@@ -1,6 +1,7 @@
 #pragma once
 #include <stdint.h>
 #include <pthread.h>
+#include <bits/types/FILE.h>
 
 typedef struct {
     uint8_t Type;
@@ -52,4 +53,5 @@ typedef struct {
 typedef struct {
     TMessage * tMessage;
     IOArgs * writer;
+    FILE *statistics;
 } ThreadArgs;

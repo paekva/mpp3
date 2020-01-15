@@ -8,6 +8,8 @@
 #include <stdlib.h>
 
 int main(int argc, char* argv[]){
+    FILE* handlerStatistics = fopen("./manager_3/results/handler.txt", "w");
+
     pthread_t readerID, writerID;
     pthread_cond_t readerC, writerC;
     pthread_mutex_t readerM, writerM;
@@ -41,7 +43,7 @@ int main(int argc, char* argv[]){
     // TODO: -------------------------------------------------------
 
     if (params.strategy == PER_THREAD)
-        perThreadHandler(&readerArgs, &writerArgs);
+        perThreadHandler(&readerArgs, &writerArgs, handlerStatistics);
     else if (params.strategy == PER_TASK) printf("PER_TASK");
         // threadPerTaskHandler(messages, results);
     else printf("THREAD_POOL");

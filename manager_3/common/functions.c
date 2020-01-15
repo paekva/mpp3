@@ -1,6 +1,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "types.h"
+#include "../io/fileWriter.h"
+
+pthread_mutex_t statisticsMutex = PTHREAD_MUTEX_INITIALIZER;
 
 uint8_t fibbonacci(uint8_t number){
     if(number < 1) return 0;
@@ -33,39 +36,61 @@ uint8_t powMethod(uint8_t base, uint8_t power){
 }
 
 void *fibbonachiTask(void * _args){
+    struct timespec startTime, endTime;
+    long int duration;
+
     pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
     uint8_t *result = (uint8_t *)malloc(sizeof(uint8_t *));
 
     ThreadArgs *args = (ThreadArgs *)_args;
     uint8_t num = args->tMessage->Data[0];
-    *result = fibbonacci(num);
 
-    sleep(5);
+    clock_gettime(CLOCK_REALTIME, &startTime);
+    *result = fibbonacci(num);
+    clock_gettime(CLOCK_REALTIME, &endTime);
+
+    duration=1000000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec);
+    writeToFileSingle(args->statistics, &statisticsMutex, duration);
 
     pthread_setcancelstate(PTHREAD_CANCEL_DEFERRED, NULL);
     return result;
 }
 
 void *powTask(void * _args){
+    struct timespec startTime, endTime;
+    long int duration;
+
     pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
     uint8_t *result = (uint8_t *)malloc(sizeof(uint8_t *));
 
     ThreadArgs *args = (ThreadArgs *)_args;
     uint8_t * fibNum = args->tMessage->Data;
-    *result = powMethod(fibNum[0], fibNum[1]);
 
-    sleep(5);
+    clock_gettime(CLOCK_REALTIME, &startTime);
+    *result = powMethod(fibNum[0], fibNum[1]);
+    clock_gettime(CLOCK_REALTIME, &endTime);
+
+    duration=1000000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec);
+    writeToFileSingle(args->statistics, &statisticsMutex, duration);
 
     pthread_setcancelstate(PTHREAD_CANCEL_DEFERRED, NULL);
     return result;
 }
 
 void *bubbleSortTask(void * _args){
+    struct timespec startTime, endTime;
+    long int duration;
+
     pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
 
     ThreadArgs *args = (ThreadArgs *)_args;
+
+    clock_gettime(CLOCK_REALTIME, &startTime);
     uint8_t *result = bubbleSort(args->tMessage->Data, args->tMessage->Size);
-    sleep(5);
+    clock_gettime(CLOCK_REALTIME, &endTime);
+
+    duration=1000000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec);
+    writeToFileSingle(args->statistics, &statisticsMutex, duration);
 
     pthread_setcancelstate(PTHREAD_CANCEL_DEFERRED, NULL);
     return result;
