@@ -49,7 +49,7 @@ void *fibbonachiTask(void * _args){
     *result = fibbonacci(num);
     clock_gettime(CLOCK_REALTIME, &endTime);
 
-    duration=1000000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec);
+    duration=1000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec)/1000;
     writeToFileSingle(args->statistics, &statisticsMutex, duration);
 
     pthread_setcancelstate(PTHREAD_CANCEL_DEFERRED, NULL);
@@ -70,7 +70,7 @@ void *powTask(void * _args){
     *result = powMethod(fibNum[0], fibNum[1]);
     clock_gettime(CLOCK_REALTIME, &endTime);
 
-    duration=1000000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec);
+    duration=1000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec)/1000;
     writeToFileSingle(args->statistics, &statisticsMutex, duration);
 
     pthread_setcancelstate(PTHREAD_CANCEL_DEFERRED, NULL);
@@ -89,7 +89,7 @@ void *bubbleSortTask(void * _args){
     uint8_t *result = bubbleSort(args->tMessage->Data, args->tMessage->Size);
     clock_gettime(CLOCK_REALTIME, &endTime);
 
-    duration=1000000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec);
+    duration=1000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec) / 1000;
     writeToFileSingle(args->statistics, &statisticsMutex, duration);
 
     pthread_setcancelstate(PTHREAD_CANCEL_DEFERRED, NULL);

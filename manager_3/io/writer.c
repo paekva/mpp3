@@ -51,7 +51,7 @@ void *writer(void* _args) {
         pthread_setcancelstate(PTHREAD_CANCEL_DEFERRED, NULL);
 
         clock_gettime(CLOCK_REALTIME, &endTime);
-        duration=1000000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec);
+        duration=1000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec)/1000;
         writeToFileSingle(writerStatistics, &statisticsMutex, duration);
     }
 
