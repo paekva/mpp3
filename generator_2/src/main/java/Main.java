@@ -67,6 +67,8 @@ public class Main {
             int messageCount = generator.getMessagesCount();
             double[] intervals = generator.getMessagesIntervals(messageCount);
 
+            System.out.println("messages count " + messageCount);
+
             while (i < messageCount){
                 TMessage.TMessageProto message = getMessage();
                 System.out.println(message.getType());

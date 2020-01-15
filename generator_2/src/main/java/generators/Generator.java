@@ -4,24 +4,9 @@ import types.EType;
 
 public abstract class Generator {
     abstract double getRandomValue(double a, double b);
+    abstract public EType getMessageType();
 
     double[] generatorParams;
-
-    public EType getMessageType() {
-        double typeNumber = getRandomValue(1, 4);
-        int type = (int) typeNumber;
-
-        switch(type){
-            case 1:
-                return EType.FIBONACCI;
-            case 2:
-                return EType.POW;
-            case 3:
-                return EType.BUBBLE_SORT_UINT64;
-            default:
-                return EType.STOP;
-        }
-    }
 
     public int getFibbonachiNumber(){
         return (int)getRandomValue(generatorParams[0], generatorParams[1]);
