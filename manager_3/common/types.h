@@ -55,3 +55,8 @@ typedef struct {
     IOArgs * writer;
     FILE *statistics;
 } ThreadArgs;
+
+
+typedef struct {
+    struct timespec * startTime;
+} ReportArgs;

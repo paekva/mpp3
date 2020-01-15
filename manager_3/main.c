@@ -5,12 +5,16 @@
 #include "parser.h"
 #include "io/writer.h"
 #include "strategy.h"
+#include "system.h"
 #include <stdlib.h>
 
 int main(int argc, char* argv[]){
+    struct timespec startTime;
+    clock_gettime(CLOCK_REALTIME, &startTime);
+
     FILE* handlerStatistics = fopen("./manager_3/results/handler.txt", "w");
 
-    pthread_t readerID, writerID;
+    pthread_t readerID, writerID, systemID;
     pthread_cond_t readerC, writerC;
     pthread_mutex_t readerM, writerM;
 
@@ -37,10 +41,8 @@ int main(int argc, char* argv[]){
 
     pthread_create(&readerID, NULL, reader, &readerArgs);
     pthread_create(&writerID, NULL, writer, &writerArgs);
+    pthread_create(&systemID, NULL, writeSystemStatistics, &startTime);
 
-
-    // TODO: -------------------LOGIC-------------------------------
-    // TODO: -------------------------------------------------------
 
     if (params.strategy == PER_THREAD)
         perThreadHandler(&readerArgs, &writerArgs, handlerStatistics);
@@ -49,12 +51,11 @@ int main(int argc, char* argv[]){
     else printf("THREAD_POOL");
         // threadPoolHandler(params.threadsCount, messages, results);
 
-    // TODO: -------------------------------------------------------
-    // TODO: -------------------LOGIC-------------------------------
 
     pthread_join(readerID, NULL);
     pthread_cancel(writerID);
     pthread_join(writerID, NULL);
+    pthread_cancel(systemID);
     fclose(handlerStatistics);
 
     return 0;
