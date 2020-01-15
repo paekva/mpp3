@@ -44,7 +44,10 @@ void getMessages(IOArgs *args) {
         m1->Data = array;
 
         addToQueueWrapper(args->q, m1);
+
+        pthread_mutex_lock(args->mutex);
         pthread_cond_signal(args->condVar);
+        pthread_mutex_unlock(args->mutex);
 
         clock_gettime (CLOCK_REALTIME, &endTime);
         duration=1000000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec);

@@ -23,7 +23,10 @@ void *chooseHandlerFunc(void *_args){
     }
 
     addToQueue(args->writer->q, taskResult);
+
+    pthread_mutex_lock(args->writer->mutex);
     pthread_cond_signal(args->writer->condVar);
+    pthread_mutex_unlock(args->writer->mutex);
 
     return NULL;
 }
