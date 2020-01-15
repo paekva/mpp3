@@ -6,26 +6,7 @@ uint8_t fibbonacci(uint8_t number){
     if(number < 1) return 0;
     if(number == 1) return 1;
 
-    uint8_t res1 = fibbonacci(number-1);
-    uint8_t res2 = fibbonacci(number-2);
-    return res1 + res2;
-
-    /*
-     * int next, first = 0, second = 1;
-    for (int c = 0; c < number; c++)
-    {
-        if (c <= 1)
-            next = c;
-        else
-        {
-            next = first + second;
-            first = second;
-            second = next;
-        }
-        printf("%d\n", next);
-    }
-    return number;
-     */
+    return fibbonacci(number-1) + fibbonacci(number-2);
 }
 
 uint8_t* bubbleSort(uint8_t* array, int arrayLength){
