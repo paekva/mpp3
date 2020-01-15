@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include "types.h"
 
-uint8_t fibbonachi(uint8_t number){
+uint8_t fibbonacci(uint8_t number){
     if(number<1) return 0;
     if(number == 1) return 1;
-    return fibbonachi(number-1) + fibbonachi(number-2);
+    return fibbonacci(number-1) + fibbonacci(number-2);
 }
 
 uint8_t* bubbleSort(uint8_t* array, int arrayLength){
@@ -33,11 +33,11 @@ uint8_t powMethod(uint8_t base, uint8_t power){
 
 void *fibbonachiTask(void * _args){
     pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
-    uint8_t *result = malloc(sizeof(uint8_t));
+    uint8_t *result = (uint8_t *)malloc(sizeof(uint8_t *));
 
     ThreadArgs *args = (ThreadArgs *)_args;
     uint8_t num = args->tMessage->Data[0];
-    *result = fibbonachi(num);
+    *result = fibbonacci(num);
 
     sleep(5);
 
@@ -47,7 +47,7 @@ void *fibbonachiTask(void * _args){
 
 void *powTask(void * _args){
     pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
-    uint8_t *result = malloc(sizeof(uint8_t));
+    uint8_t *result = (uint8_t *)malloc(sizeof(uint8_t *));
 
     ThreadArgs *args = (ThreadArgs *)_args;
     uint8_t * fibNum = args->tMessage->Data;
