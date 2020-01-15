@@ -53,9 +53,9 @@ int main(int argc, char* argv[]){
     // TODO: -------------------LOGIC-------------------------------
 
     pthread_join(readerID, NULL);
-    printf("DONE READER\n");
     pthread_cancel(writerID);
     pthread_join(writerID, NULL);
+    fclose(handlerStatistics);
 
     return 0;
 }

@@ -4,28 +4,16 @@
 #include "stdio.h"
 #include "fileWriter.h"
 
-void writeToFileMultiple(FILE* fin, pthread_mutex_t* mutex, int size, uint8_t message){
-    pthread_mutex_lock(mutex);
-    /*
-    for(int j =0;j<size; j++){
-        fprintf(fin,"%hhu ", message);
-    }
-    fprintf(fin,"\n");
-    fflush(fin);
-     */
-    pthread_mutex_unlock(mutex);
-}
-
 void *writer(void* _args) {
-    IOArgs *writer = (IOArgs *)_args;
-
-    pthread_mutex_t resultsMutex;
-    pthread_mutex_init(&resultsMutex, NULL);
     FILE* fin = fopen("./manager_3/results/results.txt", "w");
+    FILE *writerStatistics = fopen("./manager_3/results/writer.txt", "w");
+
     if(fin == NULL)
         return NULL;
 
-    FILE *writerInfo = fopen("./manager_3/results/writer.txt", "w");
+    IOArgs *args = (IOArgs *)_args;
+    pthread_mutex_t resultsMutex;
+    pthread_mutex_init(&resultsMutex, NULL);
     pthread_mutex_t statisticsMutex;
     pthread_mutex_init(&statisticsMutex, NULL);
 
@@ -36,13 +24,13 @@ void *writer(void* _args) {
         long int duration;
 
         clock_gettime(CLOCK_REALTIME, &startTime);
-        TMessage *result = (TMessage *)removeFromQueue(writer->q);
+        TMessage *result = (TMessage *)removeFromQueue(args->q);
 
         if(result == NULL) {
             // wait for condition
-            pthread_mutex_lock(writer->mutex);
-            pthread_cond_wait(writer->condVar, writer->mutex);
-            pthread_mutex_unlock(writer->mutex);
+            pthread_mutex_lock(args->mutex);
+            pthread_cond_wait(args->condVar, args->mutex);
+            pthread_mutex_unlock(args->mutex);
             continue;
         }
 
@@ -57,16 +45,16 @@ void *writer(void* _args) {
                     break;
                 }
                 default:
-                    writeToFileMultiple(fin, &resultsMutex, result->Size, result->Data[0]);
+                    writeToFileMultiple(fin, &resultsMutex, result->Size, result->Data);
         }
         i++;
         pthread_setcancelstate(PTHREAD_CANCEL_DEFERRED, NULL);
 
         clock_gettime(CLOCK_REALTIME, &endTime);
         duration=1000000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec);
-        writeToFileSingle(writerInfo, &statisticsMutex, duration);
+        writeToFileSingle(writerStatistics, &statisticsMutex, duration);
     }
 
     fclose(fin);
-    fclose(writerInfo);
+    fclose(writerStatistics);
 }
