@@ -4,6 +4,8 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import types.EType;
+import types.ModeType;
+
 import static org.junit.Assert.*;
 import java.util.Arrays;
 
@@ -12,6 +14,10 @@ public class GeneratorTest {
     private static Uniform uniform;
     private static Normal normal;
     private static Exponential exponential;
+
+    private static boolean isInteger(double number){
+        return number == Math.round(number);
+    }
 
     @BeforeClass
     public static void preTest(){
@@ -41,30 +47,44 @@ public class GeneratorTest {
     }
 
     @Test
-    public void getFibbonacciNumber() {
-    }
-
-    @Test
     public void getArraySize() {
         int uniformSize = uniform.getArraySize();
-        assertTrue(uniformSize > 0 && uniformSize%1 == 0);
+        assertTrue(uniformSize > 0 && isInteger(uniformSize));
 
         int normalSize = normal.getArraySize();
-        assertTrue(normalSize > 0 && normalSize%1 == 0);
+        assertTrue(normalSize > 0 && isInteger(normalSize));
 
         int expSize = exponential.getArraySize();
-        assertTrue(expSize > 0 && expSize%1 == 0);
+        assertTrue(expSize > 0 && isInteger(expSize));
     }
 
     @Test
     public void getMessagesCount() {
         int uniformSize = uniform.getArraySize();
-        assertTrue(uniformSize > 0 && uniformSize%1 == 0);
+        assertTrue(uniformSize > 0 && isInteger(uniformSize));
 
         int normalSize = normal.getArraySize();
-        assertTrue(normalSize > 0 && normalSize%1 == 0);
+        assertTrue(normalSize > 0 && isInteger(normalSize));
 
         int expSize = exponential.getArraySize();
-        assertTrue(expSize > 0 && expSize%1 == 0);
+        assertTrue(expSize > 0 && isInteger(expSize));
+    }
+
+    @Test
+    public void initUniformGeneratorTest(){
+        Generator generator = Generator.initGenerator(ModeType.UNIFORM, new double[2]);
+        assertTrue(generator instanceof Uniform);
+    }
+
+    @Test
+    public void initNormalGeneratorTest(){
+        Generator generator = Generator.initGenerator(ModeType.NORMAL, new double[2]);
+        assertTrue(generator instanceof Normal);
+    }
+
+    @Test
+    public void initExponentialGeneratorTest(){
+        Generator generator = Generator.initGenerator(ModeType.EXPONENTIAL, new double[2]);
+        assertTrue(generator instanceof Exponential);
     }
 }

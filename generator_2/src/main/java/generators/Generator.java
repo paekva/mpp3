@@ -1,6 +1,7 @@
 package generators;
 
 import types.EType;
+import types.ModeType;
 
 public abstract class Generator {
     abstract double getRandomValue();
@@ -15,6 +16,16 @@ public abstract class Generator {
                 : random == 0
                     ? 1
                     : random;
+    }
+
+    public static Generator initGenerator(ModeType mode, double[] params) {
+        if (mode == ModeType.EXPONENTIAL) {
+            return new Exponential(params[0]);
+        } else if (mode == ModeType.NORMAL) {
+            return new Normal(params);
+        } else {
+            return new Uniform(params);
+        }
     }
 
     public int getFibbonacciNumber(){ return getNaturalNumber(); }

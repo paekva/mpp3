@@ -1,26 +1,34 @@
-import generators.Exponential;
 import generators.Generator;
-import generators.Normal;
 import generators.Uniform;
 import types.EType;
+import types.ModeType;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class Main {
-    private static String modeValue = "";
+    private static ModeType modeValue;
     private static double[] params = new double[2];
     private static Generator generator;
 
-    private static void parseOptions(String[] args) throws Exception {
+    public static ModeType getBySpelling(String spelling) {
+        if (ModeType.EXPONENTIAL.getSpelling().equals(spelling)) {
+            return ModeType.EXPONENTIAL;
+        } else if (ModeType.NORMAL.getSpelling().equals(spelling)) {
+            return ModeType.NORMAL;
+        }
+        return ModeType.UNIFORM;
+    }
+
+    public static void parseOptions(String[] args) throws Exception {
         for(int i = 0; i < args.length; i++){
             if ("--mode".equals(args[i])) {
                 i++;
-                modeValue = args[i];
+                modeValue = getBySpelling(args[i]);
             } else if ("--param".equals(args[i])) {
                 i++;
                 params[0] = Double.parseDouble(args[i]);
                 i++;
-                if(!modeValue.equals("exp")) {
+                if(modeValue != ModeType.EXPONENTIAL) {
                     params[1] = Double.parseDouble(args[i]);
                 }
             } else {
@@ -29,7 +37,7 @@ public class Main {
         }
     }
 
-    private static TMessage.TMessageProto getMessage() throws Exception {
+    public static TMessage.TMessageProto getMessage() throws Exception {
         if(generator != null ){
             EType messageType = generator.getMessageType();
             MessageCreator messageCreator = new MessageCreator();
@@ -51,20 +59,11 @@ public class Main {
         }
     }
 
-    private static void initGenerator() {
-        if ("exp".equals(modeValue)) {
-            generator = new Exponential(params[0]);
-        } else if ("normal".equals(modeValue)) {
-            generator = new Normal(params);
-        } else {
-            generator = new Uniform(params);
-        }
-    }
-
     public static void main(String[] args) throws IOException, InterruptedException {
         try{
             parseOptions(args);
-            initGenerator();
+            generator = Generator.initGenerator(modeValue, params);
+
             int i =0 ;
             int messageCount = generator.getMessagesCount();
             Uniform generatorSec = new Uniform(params);
