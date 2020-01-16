@@ -22,6 +22,7 @@ void *chooseHandlerFunc(void *_args){
         (*taskResult).Size = args->tMessage->Size;
     }
 
+    sleep(5);
     addToQueue(args->writer->q, taskResult);
 
     pthread_mutex_lock(args->writer->mutex);

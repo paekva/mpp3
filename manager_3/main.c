@@ -13,6 +13,7 @@ int main(int argc, char* argv[]){
     clock_gettime(CLOCK_REALTIME, &startTime);
 
     FILE* handlerStatistics = fopen("./manager_3/results/handler.txt", "w");
+    FILE* systemStatistics = fopen("./manager_3/results/system.txt", "w");
 
     pthread_t readerID, writerID, systemID;
     pthread_cond_t readerC, writerC;
@@ -48,7 +49,8 @@ int main(int argc, char* argv[]){
             &startTime,
             params.msInterval,
             &counter,
-            &counterM
+            &counterM,
+            systemStatistics
     };
 
     pthread_create(&readerID, NULL, reader, &readerArgs);
@@ -69,6 +71,7 @@ int main(int argc, char* argv[]){
     pthread_join(writerID, NULL);
     pthread_cancel(systemID);
     fclose(handlerStatistics);
+    fclose(systemStatistics);
 
     return 0;
 }

@@ -3,6 +3,8 @@
 #include <pthread.h>
 #include "message.pb.h"
 #include "../common/types.h"
+#include "fileWriter.h"
+
 using namespace std;
 
 extern "C" void getMessages(IOArgs *args);
@@ -57,7 +59,7 @@ void getMessages(IOArgs *args) {
         pthread_mutex_unlock(args->mutex);
 
         clock_gettime (CLOCK_REALTIME, &endTime);
-        duration=1000000*(endTime.tv_sec - startTime.tv_sec)+(endTime.tv_nsec - startTime.tv_nsec)/1000;
+        duration = convertToMicroSeconds(endTime) - convertToMicroSeconds(startTime);
 
         if (readerInfo.is_open())
         {

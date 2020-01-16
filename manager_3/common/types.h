@@ -64,4 +64,5 @@ typedef struct {
     uint16_t interval;
     int* counter;
     pthread_mutex_t* counterMutex;
+    FILE *reportFile;
 } ReportArgs;
