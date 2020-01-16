@@ -15,18 +15,16 @@ public class Uniform extends Generator {
     }
 
     public EType getMessageType() {
-        double typeNumber = getRandomValue(1, 4);
+        double typeNumber = getRandomValue(0, 3);
         int type = (int) typeNumber;
 
         switch(type){
-            case 1:
+            case 0:
                 return EType.FIBONACCI;
-            case 2:
+            case 1:
                 return EType.POW;
-            case 3:
-                return EType.BUBBLE_SORT_UINT64;
             default:
-                return EType.STOP;
+                return EType.BUBBLE_SORT_UINT64;
         }
     }
 }

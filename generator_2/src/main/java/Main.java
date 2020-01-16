@@ -20,7 +20,9 @@ public class Main {
                 i++;
                 params[0] = Double.parseDouble(args[i]);
                 i++;
-                params[1] = Double.parseDouble(args[i]);
+                if(!modeValue.equals("exp")) {
+                    params[1] = Double.parseDouble(args[i]);
+                }
             } else {
                 throw new Exception("Wrong generator options");
             }
@@ -65,16 +67,16 @@ public class Main {
             initGenerator();
             int i =0 ;
             int messageCount = generator.getMessagesCount();
-
-            System.out.println("messages count " + messageCount);
+            Uniform generatorSec = new Uniform(params);
 
             while (i < messageCount){
                 TMessage.TMessageProto message = getMessage();
-                System.out.println(message.getType());
+                System.out.println("message type "  + message.getType());
                 FileOutputStream fos = new FileOutputStream("hub");
                 message.writeTo(fos);
                 fos.close();
-                Thread.sleep(generator.getMessagesInterval());
+
+                Thread.sleep(generatorSec.getMessagesInterval());
                 i++;
             }
 

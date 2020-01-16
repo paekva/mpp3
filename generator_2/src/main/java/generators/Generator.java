@@ -34,7 +34,8 @@ public abstract class Generator {
     }
 
     public int getMessagesCount(){
-        return (int)getRandomValue();
+        int messageCount = (int)getRandomValue();
+        return messageCount < 0 ? messageCount * (-1) : messageCount;
     }
 
     public long getMessagesInterval(){
