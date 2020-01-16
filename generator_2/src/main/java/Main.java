@@ -36,7 +36,7 @@ public class Main {
 
             switch (messageType){
                 case FIBONACCI:
-                    return messageCreator.getMessage(messageType, generator.getFibbonachiNumber());
+                    return messageCreator.getMessage(messageType, generator.getFibbonacciNumber());
                 case POW:
                     return messageCreator.getMessage(messageType, generator.getPowBase(), generator.getPowValue());
                 case BUBBLE_SORT_UINT64: {
@@ -53,7 +53,7 @@ public class Main {
 
     private static void initGenerator() {
         if ("exp".equals(modeValue)) {
-            generator = new Exponential(params);
+            generator = new Exponential(params[0]);
         } else if ("normal".equals(modeValue)) {
             generator = new Normal(params);
         } else {

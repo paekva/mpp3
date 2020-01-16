@@ -8,21 +8,22 @@ public abstract class Generator {
 
     double[] generatorParams;
 
-    public int getFibbonachiNumber(){
-        return (int)getRandomValue();
+    private int getNaturalNumber(){
+        int random = (int)getRandomValue();
+        return random < 0
+                ? random * (-1)
+                : random == 0
+                    ? 1
+                    : random;
     }
 
-    public int getPowBase(){
-        return (int)getRandomValue();
-    }
+    public int getFibbonacciNumber(){ return getNaturalNumber(); }
 
-    public int getPowValue(){
-        return (int)getRandomValue();
-    }
+    public int getPowBase(){ return (int)getRandomValue(); }
 
-    public int getArraySize(){
-        return (int)getRandomValue();
-    }
+    public int getPowValue(){ return getNaturalNumber(); }
+
+    public int getArraySize(){ return getNaturalNumber(); }
 
     public double[] getArray(int arrayLength){
         double[] array = new double[arrayLength];
@@ -33,10 +34,7 @@ public abstract class Generator {
         return array;
     }
 
-    public int getMessagesCount(){
-        int messageCount = (int)getRandomValue();
-        return messageCount < 0 ? messageCount * (-1) : messageCount;
-    }
+    public int getMessagesCount(){ return getNaturalNumber(); }
 
     public long getMessagesInterval(){
         return (long)getRandomValue()*100;

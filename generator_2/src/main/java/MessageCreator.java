@@ -2,11 +2,11 @@ import types.EType;
 
 public class MessageCreator {
 
-    TMessage.TMessageProto getMessage(EType messageType, int fibbonachi){
+    TMessage.TMessageProto getMessage(EType messageType, int Fibbonacci){
         return TMessage.TMessageProto.newBuilder()
                 .setType(messageType.index())
                 .setSize(1)
-                .addData(fibbonachi)
+                .addData(Fibbonacci)
                 .build();
     }
 

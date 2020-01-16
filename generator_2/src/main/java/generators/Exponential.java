@@ -3,8 +3,8 @@ package generators;
 import types.EType;
 
 public class Exponential extends Generator {
-    public Exponential(double[] params){
-        generatorParams = params;
+    public Exponential(double lambda){
+        generatorParams = new double[]{lambda, 0};
     }
 
     double getRandomValue() {
