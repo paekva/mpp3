@@ -18,13 +18,10 @@ void incrementCounter(int *counter, pthread_mutex_t* mutex){
 
 void getMessages(IOArgs *args) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
-
     std::ofstream readerInfo;
     readerInfo.open("./manager_3/results/reader.txt");
-    if(!readerInfo.is_open()){
-        cout << strerror(errno) << endl;
-    }
 
+    pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, nullptr);
     while(true){
         struct timespec startTime, endTime;
         long int duration;
@@ -51,12 +48,16 @@ void getMessages(IOArgs *args) {
 
         m1->Data = array;
 
+        pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, nullptr);
+
         addToQueueWrapper(args->q, m1);
         incrementCounter(args->counter, args->counterMutex);
 
         pthread_mutex_lock(args->mutex);
         pthread_cond_signal(args->condVar);
         pthread_mutex_unlock(args->mutex);
+
+        pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, nullptr);
 
         clock_gettime (CLOCK_REALTIME, &endTime);
         duration = convertToMicroSeconds(endTime) - convertToMicroSeconds(startTime);

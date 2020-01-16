@@ -11,6 +11,7 @@ void decrementCounter(int *counter, pthread_mutex_t* mutex){
 }
 
 void *writer(void* _args) {
+    pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
     FILE* fin = fopen("./manager_3/results/results.txt", "w");
     FILE *writerStatistics = fopen("./manager_3/results/writer.txt", "w");
 
@@ -32,16 +33,19 @@ void *writer(void* _args) {
         clock_gettime(CLOCK_REALTIME, &startTime);
         TMessage *result = (TMessage *)removeFromQueue(args->q);
 
+        pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL);
         if(result == NULL) {
-            // wait for condition
+
             pthread_mutex_lock(args->mutex);
             pthread_cond_wait(args->condVar, args->mutex);
             pthread_mutex_unlock(args->mutex);
-            continue;
-        }
 
-        pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
-        decrementCounter(args->counter, args->counterMutex);
+            pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
+            continue;
+        } else {
+            decrementCounter(args->counter, args->counterMutex);
+            pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
+        }
 
         if(result->Type == STOP)
             break;
@@ -56,7 +60,6 @@ void *writer(void* _args) {
                     writeToFileMultiple(fin, &resultsMutex, result->Size, result->Data);
         }
         i++;
-        pthread_setcancelstate(PTHREAD_CANCEL_DEFERRED, NULL);
 
         clock_gettime(CLOCK_REALTIME, &endTime);
         duration = convertToMicroSeconds(endTime) - convertToMicroSeconds(startTime);

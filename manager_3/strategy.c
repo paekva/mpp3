@@ -6,6 +6,8 @@
 #include "common/functions.h"
 
 void *chooseHandlerFunc(void *_args){
+    pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
+
     ThreadArgs *args = (ThreadArgs *)_args;
 
     TMessage* taskResult = malloc(sizeof(TMessage));
@@ -22,7 +24,7 @@ void *chooseHandlerFunc(void *_args){
         (*taskResult).Size = args->tMessage->Size;
     }
 
-    sleep(5);
+    pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL);
     addToQueue(args->writer->q, taskResult);
 
     pthread_mutex_lock(args->writer->mutex);
