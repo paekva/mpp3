@@ -7,23 +7,20 @@ public class Exponential extends Generator {
         generatorParams = params;
     }
 
-    double getRandomValue(double m, double y) {
+    double getRandomValue() {
         return Math.log(1 - Math.random()) / generatorParams[0];
     }
 
     public EType getMessageType() {
-        double typeNumber = getRandomValue(generatorParams[0], generatorParams[1]);
-
-        // convert given value to the interval
-
-        int type = (int) typeNumber;
+        double typeNumber = getRandomValue();
+        int type = (int) typeNumber / 4;
 
         switch(type){
-            case 1:
+            case 0:
                 return EType.FIBONACCI;
-            case 2:
+            case 1:
                 return EType.POW;
-            case 3:
+            case 2:
                 return EType.BUBBLE_SORT_UINT64;
             default:
                 return EType.STOP;

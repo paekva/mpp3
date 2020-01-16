@@ -9,26 +9,22 @@ public class Normal extends Generator {
         generatorParams = params;
     }
 
-    double getRandomValue(double m, double y) {
+    double getRandomValue() {
         Random generator = new Random();
         double nxt = generator.nextGaussian(); // standard normal dist
-        return nxt * y + m; // convert standard to original with params m and y
+        return nxt * generatorParams[1] + generatorParams[0]; // convert standard to original with params m and y
     }
 
     public EType getMessageType() {
-        double typeNumber = getRandomValue(generatorParams[0], generatorParams[1]);
-
-        // convert given value to the interval
-        System.out.println("normal " + typeNumber);
-
-        int type = (int) typeNumber;
+        double typeNumber = getRandomValue();
+        int type = (int) typeNumber / 4;
 
         switch(type){
-            case 1:
+            case 0:
                 return EType.FIBONACCI;
-            case 2:
+            case 1:
                 return EType.POW;
-            case 3:
+            case 2:
                 return EType.BUBBLE_SORT_UINT64;
             default:
                 return EType.STOP;

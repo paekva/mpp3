@@ -10,6 +10,9 @@ public class Uniform extends Generator {
     double getRandomValue(double a, double b) {
         return Math.random()*(b-a) + a;
     }
+    double getRandomValue() {
+        return Math.random()*(generatorParams[1]-generatorParams[0]) + generatorParams[0];
+    }
 
     public EType getMessageType() {
         double typeNumber = getRandomValue(1, 4);

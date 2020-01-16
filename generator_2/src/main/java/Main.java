@@ -65,7 +65,6 @@ public class Main {
             initGenerator();
             int i =0 ;
             int messageCount = generator.getMessagesCount();
-            double[] intervals = generator.getMessagesIntervals(messageCount);
 
             System.out.println("messages count " + messageCount);
 
@@ -75,7 +74,7 @@ public class Main {
                 FileOutputStream fos = new FileOutputStream("hub");
                 message.writeTo(fos);
                 fos.close();
-                Thread.sleep((long)intervals[i] * 100);
+                Thread.sleep(generator.getMessagesInterval());
                 i++;
             }
 
