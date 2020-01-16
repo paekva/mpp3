@@ -4,6 +4,12 @@
 #include "stdio.h"
 #include "fileWriter.h"
 
+void decrementCounter(int *counter, pthread_mutex_t* mutex){
+    pthread_mutex_lock(mutex);
+    *counter = *counter - 1;
+    pthread_mutex_unlock(mutex);
+}
+
 void *writer(void* _args) {
     FILE* fin = fopen("./manager_3/results/results.txt", "w");
     FILE *writerStatistics = fopen("./manager_3/results/writer.txt", "w");
@@ -35,6 +41,8 @@ void *writer(void* _args) {
         }
 
         pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
+        decrementCounter(args->counter, args->counterMutex);
+
         if(result->Type == STOP)
             break;
 

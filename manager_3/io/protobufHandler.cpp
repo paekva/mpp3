@@ -8,6 +8,12 @@ using namespace std;
 extern "C" void getMessages(IOArgs *args);
 extern "C" void addToQueueWrapper(Queue * messages, TMessage *m1);
 
+void incrementCounter(int *counter, pthread_mutex_t* mutex){
+    pthread_mutex_lock(mutex);
+    *counter = *counter + 1;
+    pthread_mutex_unlock(mutex);
+}
+
 void getMessages(IOArgs *args) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -44,6 +50,7 @@ void getMessages(IOArgs *args) {
         m1->Data = array;
 
         addToQueueWrapper(args->q, m1);
+        incrementCounter(args->counter, args->counterMutex);
 
         pthread_mutex_lock(args->mutex);
         pthread_cond_signal(args->condVar);

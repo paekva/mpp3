@@ -48,6 +48,8 @@ typedef struct {
     Queue *q;
     pthread_cond_t* condVar;
     pthread_mutex_t* mutex;
+    int *counter;
+    pthread_mutex_t* counterMutex;
 } IOArgs;
 
 typedef struct {
@@ -59,4 +61,7 @@ typedef struct {
 
 typedef struct {
     struct timespec * startTime;
+    uint16_t interval;
+    int* counter;
+    pthread_mutex_t* counterMutex;
 } ReportArgs;

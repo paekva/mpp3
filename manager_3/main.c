@@ -16,10 +16,12 @@ int main(int argc, char* argv[]){
 
     pthread_t readerID, writerID, systemID;
     pthread_cond_t readerC, writerC;
-    pthread_mutex_t readerM, writerM;
+    pthread_mutex_t readerM, writerM, counterM;
+    int counter = 0;
 
     pthread_mutex_init(&readerM, NULL);
     pthread_mutex_init(&writerM, NULL);
+    pthread_mutex_init(&counterM, NULL);
     pthread_cond_init(&readerC, NULL);
     pthread_cond_init(&writerC, NULL);
 
@@ -31,17 +33,27 @@ int main(int argc, char* argv[]){
     IOArgs readerArgs = {
             messages,
             &readerC,
-            &readerM
+            &readerM,
+            &counter,
+            &counterM
     };
     IOArgs writerArgs = {
             results,
             &writerC,
-            &writerM
+            &writerM,
+            &counter,
+            &counterM
+    };
+    ReportArgs reportArgs = {
+            &startTime,
+            params.msInterval,
+            &counter,
+            &counterM
     };
 
     pthread_create(&readerID, NULL, reader, &readerArgs);
     pthread_create(&writerID, NULL, writer, &writerArgs);
-    pthread_create(&systemID, NULL, writeSystemStatistics, &startTime);
+    pthread_create(&systemID, NULL, writeSystemStatistics, &reportArgs);
 
 
     if (params.strategy == PER_THREAD)
