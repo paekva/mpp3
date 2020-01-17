@@ -68,7 +68,6 @@ int main(int argc, char* argv[]){
 
     pthread_join(readerID, NULL);
     pthread_cancel(writerID);
-    pthread_join(writerID, NULL);
     pthread_cancel(systemID);
     fclose(handlerStatistics);
     fclose(systemStatistics);

@@ -5,10 +5,15 @@ import types.ModeType;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/*  TODO:
+     -> разобраться с тестом на генерацию числа в эксп законе
+ */
+
 public class Main {
     private static ModeType modeValue;
     private static double[] params = new double[2];
     private static Generator generator;
+    private static int minMsgCount = 0;
 
     public static ModeType getBySpelling(String spelling) {
         if (ModeType.EXPONENTIAL.getSpelling().equals(spelling)) {
@@ -27,10 +32,13 @@ public class Main {
             } else if ("--param".equals(args[i])) {
                 i++;
                 params[0] = Double.parseDouble(args[i]);
-                i++;
                 if(modeValue != ModeType.EXPONENTIAL) {
+                    i++;
                     params[1] = Double.parseDouble(args[i]);
                 }
+            }  else if ("--msg".equals(args[i])) {
+                i++;
+                minMsgCount = Integer.parseInt(args[i]);
             } else {
                 throw new Exception("Wrong generator options");
             }
@@ -59,14 +67,13 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) {
         try{
             parseOptions(args);
             generator = Generator.initGenerator(modeValue, params);
 
             int i =0 ;
-            int messageCount = generator.getMessagesCount();
-            Uniform generatorSec = new Uniform(params);
+            int messageCount = minMsgCount + generator.getMessagesCount();
 
             while (i < messageCount){
                 TMessage.TMessageProto message = getMessage();
@@ -75,7 +82,7 @@ public class Main {
                 message.writeTo(fos);
                 fos.close();
 
-                Thread.sleep(generatorSec.getMessagesInterval());
+                Thread.sleep(generator.getMessagesInterval());
                 i++;
             }
 

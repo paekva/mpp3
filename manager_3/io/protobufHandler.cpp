@@ -3,12 +3,12 @@
 #include <pthread.h>
 #include "message.pb.h"
 #include "../common/types.h"
-#include "fileWriter.h"
 
 using namespace std;
 
 extern "C" void getMessages(IOArgs *args);
 extern "C" void addToQueueWrapper(Queue * messages, TMessage *m1);
+extern "C" long convertToMicroSecondsWrapper(struct timespec time);
 
 void incrementCounter(int *counter, pthread_mutex_t* mutex){
     pthread_mutex_lock(mutex);
@@ -60,7 +60,7 @@ void getMessages(IOArgs *args) {
         pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, nullptr);
 
         clock_gettime (CLOCK_REALTIME, &endTime);
-        duration = convertToMicroSeconds(endTime) - convertToMicroSeconds(startTime);
+        duration = convertToMicroSecondsWrapper(endTime) - convertToMicroSecondsWrapper(startTime);
 
         if (readerInfo.is_open())
         {

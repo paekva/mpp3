@@ -48,6 +48,6 @@ public abstract class Generator {
     public int getMessagesCount(){ return getNaturalNumber(); }
 
     public long getMessagesInterval(){
-        return (long)getRandomValue()*100;
+        return getNaturalNumber()*100;
     }
 }

@@ -8,12 +8,12 @@ public class Exponential extends Generator {
     }
 
     double getRandomValue() {
-        return Math.log(1 - Math.random()) / generatorParams[0];
+        return -1 * Math.log(1 - Math.random()) / generatorParams[0];
     }
 
     public EType getMessageType() {
         double typeNumber = getRandomValue();
-        int type = (int) typeNumber / 3;
+        int type = (int) typeNumber % 3;
 
         switch(type){
             case 0:

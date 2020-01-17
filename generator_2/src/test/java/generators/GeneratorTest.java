@@ -14,6 +14,9 @@ public class GeneratorTest {
     private static Uniform uniform;
     private static Normal normal;
     private static Exponential exponential;
+    private static double[] uniformParams = new double[]{1, 4};
+    private static double[] normalParams = new double[]{30, 5};
+    private static double lambda = 1;
 
     private static boolean isInteger(double number){
         return number == Math.round(number);
@@ -21,10 +24,9 @@ public class GeneratorTest {
 
     @BeforeClass
     public static void preTest(){
-        double[] params = new double[]{1, 4};
-        uniform = new Uniform(params);
-        normal = new Normal(params);
-        exponential = new Exponential(1);
+        uniform = new Uniform(uniformParams);
+        normal = new Normal(normalParams);
+        exponential = new Exponential(lambda);
     }
 
     @Test
@@ -36,11 +38,11 @@ public class GeneratorTest {
     @Test
     public void getRandomValueFromNormalDistribution() {
         double result = normal.getRandomValue();
-        assertTrue(result > 0);
+        assertTrue(normalParams[0] - normalParams[1]*normalParams[1] < result
+        && result < normalParams[0] + normalParams[1]*normalParams[1]);
     }
 
     @Test
-    @Ignore
     public void getRandomValueFromExponentialDistribution() {
         double result = exponential.getRandomValue();
         assertTrue(result > 0);
