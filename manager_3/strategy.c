@@ -4,6 +4,7 @@
 #include "common/types.h"
 #include "common/queue.h"
 #include "common/functions.h"
+#include "io/fileWriter.h"
 
 void *chooseHandlerFunc(void *_args){
     pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
@@ -36,11 +37,15 @@ void *chooseHandlerFunc(void *_args){
 
 void perThreadHandler(IOArgs *reader, IOArgs *writer, FILE *statistics) {
     // Queue *ids = createQueue();
+    FILE* queueStatistics = fopen("./manager_3/results/queue.txt", "w");
+    pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+    struct timespec queueEndTime;
+    long duration;
 
     while(1) {
-        TMessage *tMessage = (TMessage *)removeFromQueue(reader->q);
+        Message *messageInfo = (Message *)removeFromQueue(reader->q);
 
-        if(tMessage == NULL) {
+        if(messageInfo == NULL) {
             // wait for condition
             pthread_mutex_lock(reader->mutex);
             pthread_cond_wait(reader->condVar, reader->mutex);
@@ -48,6 +53,11 @@ void perThreadHandler(IOArgs *reader, IOArgs *writer, FILE *statistics) {
             continue;
         }
 
+        clock_gettime (CLOCK_REALTIME, &queueEndTime);
+        duration = convertToMicroSeconds(queueEndTime) - convertToMicroSeconds(messageInfo->start);
+        writeToFileSingle(queueStatistics, &mutex, duration);
+
+        TMessage *tMessage = messageInfo->message;
         if (tMessage->Type == STOP) {
             /* TODO: FIX
             int threadCount = getQueueSize(ids);

@@ -7,7 +7,7 @@
 using namespace std;
 
 extern "C" void getMessages(IOArgs *args);
-extern "C" void addToQueueWrapper(Queue * messages, TMessage *m1);
+extern "C" void addToQueueWrapper(Queue * messages, void *message);
 extern "C" long convertToMicroSecondsWrapper(struct timespec time);
 
 void incrementCounter(int *counter, pthread_mutex_t* mutex){
@@ -23,7 +23,7 @@ void getMessages(IOArgs *args) {
 
     pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, nullptr);
     while(true){
-        struct timespec startTime, endTime;
+        struct timespec startTime, endTime, queueStartTime;
         long int duration;
 
         TMessageProto message;
@@ -50,7 +50,12 @@ void getMessages(IOArgs *args) {
 
         pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, nullptr);
 
-        addToQueueWrapper(args->q, m1);
+        auto *newMessage = (Message *)malloc(sizeof(Message));
+        newMessage->message = m1;
+        clock_gettime (CLOCK_REALTIME, &queueStartTime);
+        newMessage->start = queueStartTime;
+
+        addToQueueWrapper(args->q, newMessage);
         incrementCounter(args->counter, args->counterMutex);
 
         pthread_mutex_lock(args->mutex);

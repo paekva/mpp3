@@ -9,6 +9,12 @@ typedef struct {
     uint8_t *Data;
 } TMessage;
 
+
+typedef struct {
+    TMessage *message;
+    struct timespec start;
+} Message;
+
 typedef enum
 {
     FIBONACCI,
