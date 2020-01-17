@@ -22,9 +22,9 @@ void *writeSystemStatistics(void * _args){
         long end = convertToMicroSeconds(endTime);
         duration = end - start;
 
-        pthread_mutex_lock(args->counterMutex);
-        int queueSize = *args->counter;
-        pthread_mutex_unlock(args->counterMutex);
+        pthread_mutex_lock(args->counter->mutex);
+        int queueSize = *(int *)args->counter->data;
+        pthread_mutex_unlock(args->counter->mutex);
 
         long systemInfo[] = {duration, (long)queueSize};
         writeToFileMultiple(args->reportFile, &mutex, 2, &systemInfo);

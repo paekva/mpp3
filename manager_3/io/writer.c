@@ -47,7 +47,7 @@ void *writer(void* _args) {
             queueDuration = convertToMicroSeconds(queueEndTime) - convertToMicroSeconds(taskResult->start);
             writeToFileSingle(args->queueStatistics->data, args->queueStatistics->mutex, queueDuration);
 
-            decrementCounter(args->counter, args->counterMutex);
+            decrementCounter(args->counter->data, args->counter->mutex);
             pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
         }
 

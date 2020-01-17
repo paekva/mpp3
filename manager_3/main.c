@@ -36,27 +36,27 @@ int main(int argc, char* argv[]){
             &queueStatisticsM,
             queueStatisticsF,
     };
-
+    Data counterData = {
+            &counterM,
+            &counter
+    };
     IOArgs readerArgs = {
             messages,
             &readerC,
             &readerM,
-            &counter,
-            &counterM
+            &counterData
     };
     IOArgs writerArgs = {
             results,
             &writerC,
             &writerM,
-            &counter,
-            &counterM,
+            &counterData,
             &queueStatistics
     };
     ReportArgs reportArgs = {
             &startTime,
             params.msInterval,
-            &counter,
-            &counterM,
+            &counterData,
             systemStatistics
     };
 

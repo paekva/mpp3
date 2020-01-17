@@ -10,7 +10,8 @@ extern "C" void getMessages(IOArgs *args);
 extern "C" void addToQueueWrapper(Queue * messages, void *message);
 extern "C" long convertToMicroSecondsWrapper(struct timespec time);
 
-void incrementCounter(int *counter, pthread_mutex_t* mutex){
+void incrementCounter(void *_counter, pthread_mutex_t* mutex){
+    int *counter = (int *)_counter;
     pthread_mutex_lock(mutex);
     *counter = *counter + 1;
     pthread_mutex_unlock(mutex);
@@ -56,7 +57,7 @@ void getMessages(IOArgs *args) {
         newMessage->start = queueStartTime;
 
         addToQueueWrapper(args->q, newMessage);
-        incrementCounter(args->counter, args->counterMutex);
+        incrementCounter(args->counter->data, args->counter->mutex);
 
         pthread_mutex_lock(args->mutex);
         pthread_cond_signal(args->condVar);
