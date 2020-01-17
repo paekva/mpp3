@@ -7,6 +7,7 @@
 #include "io/fileWriter.h"
 
 void *chooseHandlerFunc(void *_args){
+    struct timespec startTime;
     pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
 
     ThreadArgs *args = (ThreadArgs *)_args;
@@ -26,7 +27,13 @@ void *chooseHandlerFunc(void *_args){
     }
 
     pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL);
-    addToQueue(args->writer->q, taskResult);
+
+    Message* result = malloc(sizeof(Message));
+    result->message = taskResult;
+    clock_gettime (CLOCK_REALTIME, &startTime);
+    result->start = startTime;
+
+    addToQueue(args->writer->q, result);
 
     pthread_mutex_lock(args->writer->mutex);
     pthread_cond_signal(args->writer->condVar);
@@ -35,10 +42,8 @@ void *chooseHandlerFunc(void *_args){
     return NULL;
 }
 
-void perThreadHandler(IOArgs *reader, IOArgs *writer, FILE *statistics) {
+void perThreadHandler(IOArgs *reader, IOArgs *writer, FILE *statistics, Data* queueStatistics) {
     // Queue *ids = createQueue();
-    FILE* queueStatistics = fopen("./manager_3/results/queue.txt", "w");
-    pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
     struct timespec queueEndTime;
     long duration;
 
@@ -55,7 +60,7 @@ void perThreadHandler(IOArgs *reader, IOArgs *writer, FILE *statistics) {
 
         clock_gettime (CLOCK_REALTIME, &queueEndTime);
         duration = convertToMicroSeconds(queueEndTime) - convertToMicroSeconds(messageInfo->start);
-        writeToFileSingle(queueStatistics, &mutex, duration);
+        writeToFileSingle(queueStatistics->data, queueStatistics->mutex, duration);
 
         TMessage *tMessage = messageInfo->message;
         if (tMessage->Type == STOP) {

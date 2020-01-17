@@ -9,6 +9,10 @@ typedef struct {
     uint8_t *Data;
 } TMessage;
 
+typedef struct {
+    pthread_mutex_t *mutex;
+    void *data;
+} Data;
 
 typedef struct {
     TMessage *message;
@@ -56,6 +60,7 @@ typedef struct {
     pthread_mutex_t* mutex;
     int *counter;
     pthread_mutex_t* counterMutex;
+    Data *queueStatistics;
 } IOArgs;
 
 typedef struct {
@@ -63,7 +68,6 @@ typedef struct {
     IOArgs * writer;
     FILE *statistics;
 } ThreadArgs;
-
 
 typedef struct {
     struct timespec * startTime;

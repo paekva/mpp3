@@ -27,14 +27,14 @@ void *writer(void* _args) {
     int i = 0;
 
     while(1) {
-        struct timespec startTime, endTime;
-        long int duration;
+        struct timespec startTime, endTime, queueEndTime;
+        long int duration, queueDuration;
 
         clock_gettime(CLOCK_REALTIME, &startTime);
-        TMessage *result = (TMessage *)removeFromQueue(args->q);
+        Message *taskResult = (Message *)removeFromQueue(args->q);
 
         pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL);
-        if(result == NULL) {
+        if(taskResult == NULL) {
 
             pthread_mutex_lock(args->mutex);
             pthread_cond_wait(args->condVar, args->mutex);
@@ -43,10 +43,15 @@ void *writer(void* _args) {
             pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
             continue;
         } else {
+            clock_gettime(CLOCK_REALTIME, &queueEndTime);
+            queueDuration = convertToMicroSeconds(queueEndTime) - convertToMicroSeconds(taskResult->start);
+            writeToFileSingle(args->queueStatistics->data, args->queueStatistics->mutex, queueDuration);
+
             decrementCounter(args->counter, args->counterMutex);
             pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
         }
 
+        TMessage *result = taskResult->message;
         if(result->Type == STOP)
             break;
 

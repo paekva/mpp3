@@ -13,16 +13,18 @@ int main(int argc, char* argv[]){
     clock_gettime(CLOCK_REALTIME, &startTime);
 
     FILE* handlerStatistics = fopen("./manager_3/results/handler.txt", "w");
+    FILE* queueStatisticsF = fopen("./manager_3/results/queue.txt", "w");
     FILE* systemStatistics = fopen("./manager_3/results/system.txt", "w");
 
     pthread_t readerID, writerID, systemID;
     pthread_cond_t readerC, writerC;
-    pthread_mutex_t readerM, writerM, counterM;
+    pthread_mutex_t readerM, writerM, counterM, queueStatisticsM;
     int counter = 0;
 
     pthread_mutex_init(&readerM, NULL);
     pthread_mutex_init(&writerM, NULL);
     pthread_mutex_init(&counterM, NULL);
+    pthread_mutex_init(&queueStatisticsM, NULL);
     pthread_cond_init(&readerC, NULL);
     pthread_cond_init(&writerC, NULL);
 
@@ -30,6 +32,10 @@ int main(int argc, char* argv[]){
     Queue *results = createQueue();
     Params params = getOptions(argc, argv);
 
+    Data queueStatistics = {
+            &queueStatisticsM,
+            queueStatisticsF,
+    };
 
     IOArgs readerArgs = {
             messages,
@@ -43,7 +49,8 @@ int main(int argc, char* argv[]){
             &writerC,
             &writerM,
             &counter,
-            &counterM
+            &counterM,
+            &queueStatistics
     };
     ReportArgs reportArgs = {
             &startTime,
@@ -59,7 +66,7 @@ int main(int argc, char* argv[]){
 
 
     if (params.strategy == PER_THREAD)
-        perThreadHandler(&readerArgs, &writerArgs, handlerStatistics);
+        perThreadHandler(&readerArgs, &writerArgs, handlerStatistics, &queueStatistics);
     else if (params.strategy == PER_TASK) printf("PER_TASK");
         // threadPerTaskHandler(messages, results);
     else printf("THREAD_POOL");
@@ -71,6 +78,7 @@ int main(int argc, char* argv[]){
     pthread_cancel(systemID);
     fclose(handlerStatistics);
     fclose(systemStatistics);
+    fclose(queueStatisticsF);
 
     return 0;
 }
