@@ -45,9 +45,9 @@ void *writer(void* _args) {
         } else {
             clock_gettime(CLOCK_REALTIME, &queueEndTime);
             queueDuration = convertToMicroSeconds(queueEndTime) - convertToMicroSeconds(taskResult->start);
-            writeToFileSingle(args->queueStatistics->data, args->queueStatistics->mutex, queueDuration);
+            writeToFileSingle((FILE *)args->queueStatistics->data, args->queueStatistics->mutex, queueDuration);
 
-            decrementCounter(args->counter->data, args->counter->mutex);
+            decrementCounter((int *)args->counter->data, args->counter->mutex);
             pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
         }
 
@@ -62,7 +62,7 @@ void *writer(void* _args) {
                     break;
                 }
                 default:
-                    writeToFileMultiple(fin, &resultsMutex, result->Size, result->Data);
+                    writeToFileMultiple(fin, &resultsMutex, result->Size, (long *)result->Data);
         }
         i++;
 

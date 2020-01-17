@@ -12,7 +12,7 @@ void *chooseHandlerFunc(void *_args){
 
     ThreadArgs *args = (ThreadArgs *)_args;
 
-    TMessage* taskResult = malloc(sizeof(TMessage));
+    TMessage* taskResult = (TMessage *)malloc(sizeof(TMessage));
     taskResult->Type = args->tMessage->Type;
     taskResult->Size = 0;
     taskResult->Data = NULL;
@@ -28,7 +28,7 @@ void *chooseHandlerFunc(void *_args){
 
     pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL);
 
-    Message* result = malloc(sizeof(Message));
+    Message* result = (Message*)malloc(sizeof(Message));
     result->message = taskResult;
     clock_gettime (CLOCK_REALTIME, &startTime);
     result->start = startTime;
@@ -60,7 +60,7 @@ void perThreadHandler(IOArgs *reader, IOArgs *writer, FILE *statistics, Data* qu
 
         clock_gettime (CLOCK_REALTIME, &queueEndTime);
         duration = convertToMicroSeconds(queueEndTime) - convertToMicroSeconds(messageInfo->start);
-        writeToFileSingle(queueStatistics->data, queueStatistics->mutex, duration);
+        writeToFileSingle((FILE *)queueStatistics->data, queueStatistics->mutex, duration);
 
         TMessage *tMessage = messageInfo->message;
         if (tMessage->Type == STOP) {

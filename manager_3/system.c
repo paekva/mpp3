@@ -27,6 +27,6 @@ void *writeSystemStatistics(void * _args){
         pthread_mutex_unlock(args->counter->mutex);
 
         long systemInfo[] = {duration, (long)queueSize};
-        writeToFileMultiple(args->reportFile, &mutex, 2, &systemInfo);
+        writeToFileMultiple((FILE *)args->reportFile, &mutex, 2, (long *)&systemInfo);
     }
 }

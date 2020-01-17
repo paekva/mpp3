@@ -35,7 +35,7 @@ uint8_t powMethod(uint8_t base, uint8_t power){
     return result;
 }
 
-void *fibbonachiTask(void * _args){
+uint8_t *fibbonachiTask(void * _args){
     struct timespec startTime, endTime;
     long int duration;
 
@@ -56,7 +56,7 @@ void *fibbonachiTask(void * _args){
     return result;
 }
 
-void *powTask(void * _args){
+__uint8_t *powTask(void * _args){
     struct timespec startTime, endTime;
     long int duration;
 
@@ -77,7 +77,7 @@ void *powTask(void * _args){
     return result;
 }
 
-void *bubbleSortTask(void * _args){
+__uint8_t *bubbleSortTask(void * _args){
     struct timespec startTime, endTime;
     long int duration;
 

@@ -45,7 +45,7 @@ void* removeFromQueue(Queue* q){
             q->tail = NULL;
         }
 
-        returnValue = &(*(removedNode->value));
+        returnValue = removedNode->value;
         free(removedNode);
     }
     pthread_mutex_unlock(&q->mutexId);
